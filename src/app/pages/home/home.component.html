@@ -1,0 +1,88 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1>Building a Stronger South Sudanese Community in France</h1>
+    <p>Connecting, supporting, and celebrating our heritage since 2015</p>
+    <div class="cta-buttons">
+      <button mat-raised-button color="primary" routerLink="/members">Join Us</button>
+      <button mat-stroked-button color="primary" routerLink="/events">See Events</button>
+    </div>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="container">
+    <div class="about-content">
+      <h2>Who We Are</h2>
+      <p>We are a nonprofit organization dedicated to supporting South Sudanese individuals and families in France through cultural preservation, education programs, and social initiatives that foster unity and belonging.</p>
+      <button mat-button routerLink="/about">Learn More →</button>
+    </div>
+    <div class="about-image">
+      <img src="../../../assets/images/hero-bg.jpg" alt="Community members together">
+    </div>
+  </div>
+</section>
+
+<section class="events-section">
+  <div class="container">
+    <h2>Upcoming Events</h2>
+    <div class="events-grid">
+      <mat-card *ngFor="let event of upcomingEvents" class="event-card">
+        <img mat-card-image [src]="event.imageUrl" [alt]="event.title">
+        <mat-card-content>
+          <span class="event-category" [ngClass]="event.category">{{ event.category }}</span>
+          <h3>{{ event.title }}</h3>
+          <div class="event-meta">
+            <mat-icon>event</mat-icon>
+            <span>{{ event.date | date:'mediumDate' }}</span>
+            <mat-icon>location_on</mat-icon>
+            <span>{{ event.location }}</span>
+          </div>
+          <p>{{ event.description }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button routerLink="/events/{{event.id}}">Details</button>
+          <button mat-button color="primary">Register</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="section-footer">
+      <button mat-raised-button routerLink="/events">View All Events</button>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="container">
+    <div class="stat-item" *ngFor="let stat of stats">
+      <div class="stat-number">{{ stat.number }}</div>
+      <div class="stat-label">{{ stat.label }}</div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <div class="container">
+    <h2>What Our Members Say</h2>
+    <div class="testimonials-container">
+      <mat-card *ngFor="let testimonial of testimonials" class="testimonial-card">
+        <mat-icon class="quote-icon">format_quote</mat-icon>
+        <p class="testimonial-text">{{ testimonial.quote }}</p>
+        <div class="testimonial-author">
+          <div class="author-name">{{ testimonial.author }}</div>
+          <div class="author-role">{{ testimonial.role }}</div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Get Involved?</h2>
+    <p>Join our community and help preserve South Sudanese culture in France</p>
+    <div class="cta-buttons">
+      <button mat-raised-button color="primary" routerLink="/members">Become a Member</button>
+      <button mat-stroked-button color="primary" routerLink="/contact">Contact Us</button>
+    </div>
+  </div>
+</section>

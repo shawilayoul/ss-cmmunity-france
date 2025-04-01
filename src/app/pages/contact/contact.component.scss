@@ -1,0 +1,142 @@
+@import '../../../styles/variables';
+
+.contact-page {
+  .contact-hero {
+    background: linear-gradient(rgba($primary-color, 0.8), rgba($primary-color, 0.8)), 
+                url('../../../assets/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 6rem 0;
+    text-align: center;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+  }
+
+  .main-content {
+    max-width: $container-max-width;
+    margin: 2rem auto;
+    padding: 0 $spacing-md;
+  }
+
+  .contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-lg;
+    margin: $spacing-xxl 0;
+
+    .info-card {
+      background: white;
+      border-radius: $border-radius-lg;
+      padding: $spacing-xl;
+      box-shadow: $box-shadow-sm;
+      transition: transform 0.3s, box-shadow 0.3s;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: $box-shadow-md;
+      }
+
+      mat-icon {
+        font-size: 2.5rem;
+        color: $primary-color;
+        margin-bottom: $spacing-sm;
+      }
+
+      h3 {
+        color: $primary-color;
+        margin: $spacing-sm 0;
+      }
+
+      p {
+        margin: $spacing-xs 0;
+        line-height: 1.6;
+      }
+
+      a {
+        color: $primary-color;
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+          color: darken($primary-color, 10%);
+          text-decoration: underline;
+        }
+      }
+
+      .map-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: $spacing-sm;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .contact-form-section {
+    margin: $spacing-xxl 0;
+    background: white;
+    padding: $spacing-xl;
+    border-radius: $border-radius-lg;
+    box-shadow: $box-shadow-sm;
+
+    h2 {
+      color: $primary-color;
+      margin-bottom: $spacing-xl;
+      text-align: center;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: $spacing-lg;
+
+      button[type="submit"] {
+        justify-self: center;
+        padding: $spacing-sm $spacing-xxl;
+        margin-top: $spacing-md;
+
+        mat-spinner {
+          display: inline-block;
+          margin-left: $spacing-sm;
+        }
+      }
+    }
+  }
+
+  .map-container {
+    margin: $spacing-xxl 0;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    box-shadow: $box-shadow-md;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: $breakpoint-md) {
+  .contact-page {
+    .contact-hero {
+      padding: 4rem 0;
+      
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .contact-info {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-form-section {
+      padding: $spacing-lg;
+    }
+  }
+}

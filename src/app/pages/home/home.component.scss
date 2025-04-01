@@ -1,0 +1,273 @@
+@import "../../../styles/variables";
+
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../../assets/images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0 $spacing-md;
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: $spacing-md;
+      line-height: 1.2;
+
+      @media (min-width: $breakpoint-md) {
+        font-size: 3.5rem;
+      }
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: $spacing-xl;
+      opacity: 0.9;
+
+      @media (min-width: $breakpoint-md) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: $spacing-md;
+    justify-content: center;
+  }
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+.about-section {
+  padding: $spacing-xxl 0;
+  background-color: white;
+
+  .container {
+    display: grid;
+    gap: $spacing-xl;
+    align-items: center;
+
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .about-content {
+    h2 {
+      color: $primary-color;
+      margin-bottom: $spacing-lg;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  .about-image {
+    img {
+      width: 100%;
+      border-radius: $border-radius-lg;
+      box-shadow: $box-shadow-lg;
+    }
+  }
+}
+
+.events-section {
+  padding: $spacing-xxl 0;
+  background-color: $light-color;
+
+  h2 {
+    text-align: center;
+    color: $primary-color;
+    margin-bottom: $spacing-xl;
+  }
+
+  .events-grid {
+    display: grid;
+    gap: $spacing-lg;
+    grid-template-columns: 1fr;
+
+    @media (min-width: $breakpoint-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .event-card {
+    transition: transform $transition-normal;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .event-category {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: $border-radius;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: $spacing-sm;
+
+      &.cultural {
+        background: rgba($primary-color, 0.1);
+        color: $primary-color;
+      }
+      &.educational {
+        background: rgba($secondary-color, 0.1);
+        color: $secondary-color;
+      }
+      &.social {
+        background: rgba(green, 0.1);
+        color: green;
+      }
+    }
+
+    .event-meta {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      color: rgba($dark-color, 0.7);
+      margin: $spacing-sm 0;
+
+      mat-icon {
+        font-size: 1rem;
+        height: auto;
+        width: auto;
+      }
+    }
+
+    mat-card-actions {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .section-footer {
+    text-align: center;
+    margin-top: $spacing-xl;
+  }
+}
+
+.stats-section {
+  background: $primary-color;
+  color: white;
+  padding: $spacing-xl 0;
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-xl;
+
+    @media (min-width: $breakpoint-sm) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .stat-item {
+    text-align: center;
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: $spacing-xs;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+  }
+}
+
+.testimonials-section {
+  padding: $spacing-xxl 0;
+  background: white;
+
+  h2 {
+    text-align: center;
+    color: $primary-color;
+    margin-bottom: $spacing-xl;
+  }
+
+  .testimonials-container {
+    display: grid;
+    gap: $spacing-lg;
+    grid-template-columns: 1fr;
+
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .testimonial-card {
+    padding: $spacing-xl;
+    position: relative;
+
+    .quote-icon {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 3rem;
+      opacity: 0.1;
+      color: $primary-color;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      margin-top: $spacing-lg;
+
+      .author-name {
+        font-weight: bold;
+      }
+
+      .author-role {
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.cta-section {
+  padding: $spacing-xxl 0;
+  background: $light-color;
+  text-align: center;
+
+  h2 {
+    color: $primary-color;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto $spacing-xl;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: $spacing-md;
+    justify-content: center;
+  }
+}

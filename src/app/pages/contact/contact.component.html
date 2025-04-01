@@ -1,0 +1,130 @@
+<section class="contact-page">
+  <div class="contact-hero">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>Get in touch with the South Sudanese Community in France</p>
+    </div>
+  </div>
+
+  <div class="container main-content">
+    <div class="contact-info">
+      <div class="info-card">
+        <mat-icon>location_on</mat-icon>
+        <h3>Our Office</h3>
+        <p>123 Community Street</p>
+        <p>75000 Paris, France</p>
+        <a
+          href="https://maps.google.com/?q=123+Community+Street+Paris"
+          target="_blank"
+          class="map-link"
+        >
+          View on Map <mat-icon>open_in_new</mat-icon>
+        </a>
+      </div>
+
+      <div class="info-card">
+        <mat-icon>email</mat-icon>
+        <h3>Email Us</h3>
+        <p>
+          General Inquiries:
+          <a href="mailto:contact@sscommunity.fr">contact&#64;sscommunity.fr</a>
+        </p>
+        <p>
+          Events:
+          <a href="mailto:events@sscommunity.fr">events&#64;sscommunity.fr</a>
+        </p>
+      </div>
+
+      <div class="info-card">
+        <mat-icon>phone</mat-icon>
+        <h3>Call Us</h3>
+        <p>President: <a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+        <p>Secretary: <a href="tel:+33698765432">+33 6 98 76 54 32</a></p>
+      </div>
+
+      <div class="info-card">
+        <mat-icon>schedule</mat-icon>
+        <h3>Office Hours</h3>
+        <p>Monday - Friday: 9am - 5pm</p>
+        <p>Saturday: 10am - 2pm</p>
+        <p>Sunday: Closed</p>
+      </div>
+    </div>
+
+    <div class="contact-form-section">
+      <h2>Send Us a Message</h2>
+      <form
+        [formGroup]="contactForm"
+        (ngSubmit)="onSubmit()"
+        class="contact-form"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Your Name</mat-label>
+          <input matInput formControlName="name" required />
+          <mat-error *ngIf="contactForm.get('name')?.hasError('required')"
+            >Name is required</mat-error
+          >
+          <mat-error *ngIf="contactForm.get('name')?.hasError('minlength')"
+            >Minimum 2 characters</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" required />
+          <mat-error *ngIf="contactForm.get('email')?.hasError('required')"
+            >Email is required</mat-error
+          >
+          <mat-error *ngIf="contactForm.get('email')?.hasError('email')"
+            >Invalid email format</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Subject</mat-label>
+          <input matInput formControlName="subject" required />
+          <mat-error *ngIf="contactForm.get('subject')?.hasError('required')"
+            >Subject is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Your Message</mat-label>
+          <textarea
+            matInput
+            formControlName="message"
+            rows="6"
+            required
+          ></textarea>
+          <mat-error *ngIf="contactForm.get('message')?.hasError('required')"
+            >Message is required</mat-error
+          >
+          <mat-error *ngIf="contactForm.get('message')?.hasError('minlength')"
+            >Minimum 20 characters</mat-error
+          >
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="contactForm.invalid || isLoading"
+        >
+          <span *ngIf="!isLoading">Send Message</span>
+          <span *ngIf="isLoading">Sending...</span>
+          <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+        </button>
+      </form>
+    </div>
+
+    <!-- <div class="map-container">
+      <google-map 
+        [options]="mapOptions"
+        [zoom]="mapOptions.zoom"
+        [center]="mapOptions.center"
+        width="100%"
+        height="400px">
+        <map-marker [position]="markerPosition"></map-marker>
+      </google-map>
+    </div> -->
+  </div>
+</section>

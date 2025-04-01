@@ -1,0 +1,34 @@
+// Import variables first
+@import 'variables';
+@import 'mixins'; // if you have mixins
+
+// CSS variables for theming
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --light-color: #{$light-color};
+  --dark-color: #{$dark-color};
+  --white: #{$white};
+  --black: #{$black};
+}
+
+// Base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family;
+  line-height: 1.6;
+  color: $dark-color;
+}
+
+// Utility classes
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+

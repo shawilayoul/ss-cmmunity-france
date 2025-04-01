@@ -1,0 +1,77 @@
+<section class="members-page">
+    <div class="container">
+      <h1>Our Community Members</h1>
+      
+      <div class="member-controls">
+        <!-- Search -->
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search Members</mat-label>
+          <input 
+            matInput 
+            [(ngModel)]="searchTerm" 
+            (input)="searchMembers()"
+            placeholder="Name, region or skills">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+  
+        <!-- Filter -->
+        <div class="filter-buttons">
+          <button 
+            *ngFor="let role of ['all', 'member', 'volunteer', 'organizer']"
+            (click)="filterByRole(role)">
+            {{ role | titlecase }}
+          </button>
+        </div>
+      </div>
+  
+      <div class="members-grid">
+        <div *ngFor="let member of filteredMembers" class="member-card">
+          <div class="member-photo">
+            <img 
+              [src]="member.profilePhoto || 'assets/profiles/default.jpg'" 
+              [alt]="member.name + ' profile photo'">
+          </div>
+          
+          <div class="member-info">
+            <h2>{{ member.name }}</h2>
+            <div class="member-meta">
+              <span class="role-badge" [class]="member.role || 'member'">
+                {{ (member.role || 'member') | titlecase }}
+              </span>
+              <span class="region">
+                <mat-icon>place</mat-icon> {{ member.region }}
+              </span>
+              <span class="joined">
+                <mat-icon>event</mat-icon> 
+                Member since {{ member.joinedDate | date:'yyyy' }}
+              </span>
+            </div>
+  
+            <div *ngIf="member.skills" class="skills">
+              <mat-chip-listbox>
+                <mat-chip *ngFor="let skill of member.skills">{{ skill }}</mat-chip>
+              </mat-chip-listbox>
+            </div>
+  
+            <p *ngIf="member.bio" class="bio">{{ member.bio }}</p>
+  
+            <div *ngIf="member.contact" class="contact-options">
+              <a *ngIf="member.contact.whatsapp" 
+                 href="https://wa.me/{{ member.contact.whatsapp }}" 
+                 target="_blank"
+                 mat-icon-button
+                 matTooltip="Contact via WhatsApp">
+                <mat-icon svgIcon="whatsapp"></mat-icon>
+              </a>
+              <button *ngIf="member.contact.email" 
+                      mat-icon-button
+                      matTooltip="Send email"
+                      (click)="sendEmail(member.contact.email)">
+                <mat-icon>email</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

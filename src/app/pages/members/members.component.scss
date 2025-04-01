@@ -1,0 +1,162 @@
+@import '../../../styles/variables';
+.members-page {
+  padding: $spacing-xl 0;
+
+  .container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+  }
+
+  .member-controls {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin-bottom: $spacing-xl;
+
+    @media (min-width: $breakpoint-md) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-field {
+      width: 100%;
+
+      @media (min-width: $breakpoint-md) {
+        width: 300px;
+      }
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: $spacing-sm;
+      flex-wrap: wrap;
+
+      button {
+        padding: $spacing-sm $spacing-md;
+        border: 1px solid $primary-color;
+        background: transparent;
+        border-radius: $border-radius;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover, &.active {
+          background: $primary-color;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .members-grid {
+    display: grid;
+    gap: $spacing-lg;
+    grid-template-columns: 1fr;
+
+    @media (min-width: $breakpoint-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .member-card {
+    border: 1px solid rgba($dark-color, 0.1);
+    border-radius: $border-radius-lg;
+    padding: $spacing-md;
+    display: flex;
+    gap: $spacing-md;
+    transition: transform $transition-normal, box-shadow $transition-normal;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $box-shadow-md;
+    }
+
+    .member-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .member-info {
+      flex: 1;
+
+      h2 {
+        margin: 0 0 $spacing-xs 0;
+        font-size: $font-size-lg;
+      }
+
+      .member-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spacing-sm;
+        margin-bottom: $spacing-sm;
+        font-size: $font-size-sm;
+        color: rgba($dark-color, 0.7);
+
+        .role-badge {
+          padding: 2px $spacing-sm;
+          border-radius: $border-radius;
+          font-size: 0.75rem;
+          font-weight: bold;
+          text-transform: uppercase;
+
+          &.member { background: rgba($primary-color, 0.1); color: $primary-color; }
+          &.volunteer { background: rgba($secondary-color, 0.1); color: $secondary-color; }
+          &.organizer { background: rgba(#8e44ad, 0.1); color: #8e44ad; }
+        }
+
+        mat-icon {
+          font-size: 1rem;
+          height: auto;
+          width: auto;
+          vertical-align: middle;
+          margin-right: 2px;
+        }
+      }
+
+      .skills {
+        margin: $spacing-sm 0;
+
+        mat-chip {
+          font-size: 0.75rem;
+          margin-right: $spacing-xs;
+          margin-bottom: $spacing-xs;
+        }
+      }
+
+      .bio {
+        font-size: $font-size-sm;
+        margin: $spacing-sm 0;
+      }
+
+      .contact-options {
+        display: flex;
+        gap: $spacing-xs;
+        margin-top: $spacing-sm;
+
+        [mat-icon-button] {
+          width: 32px;
+          height: 32px;
+          line-height: 32px;
+
+          mat-icon {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
