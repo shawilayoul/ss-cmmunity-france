@@ -41,8 +41,7 @@
 
   .menu-button {
     display: none;
-    color: white;
-
+    color: $primary-color;
     @media (max-width: $breakpoint-md) {
       display: block;
     }

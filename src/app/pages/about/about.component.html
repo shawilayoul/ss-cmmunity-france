@@ -1,84 +1,95 @@
 <section class="about-page">
-    <div class="hero-banner">
-      <div class="container">
-        <h1>Our Community Story</h1>
-        <p>Connecting South Sudanese in France since 2015</p>
-      </div>
-    </div>
-  
+  <div class="hero-banner">
     <div class="container">
-      <!-- Mission Section -->
-      <section class="mission-section">
-        <div class="text-content">
-          <h2>Our Mission</h2>
-          <p>{{ missionStatement }}</p>
-        </div>
-        <div class="image-content">
-          <img src="assets/about/mission.jpg" alt="Community gathering">
-        </div>
-      </section>
-  
-      <!-- Vision Section -->
-      <section class="vision-section">
-        <div class="image-content">
-          <img src="assets/about/vision.jpg" alt="Children learning">
-        </div>
-        <div class="text-content">
-          <h2>Our Vision</h2>
-          <p>{{ visionStatement }}</p>
-        </div>
-      </section>
-  
-      <!-- Values Section -->
-      <section class="values-section">
-        <h2>Core Values</h2>
-        <div class="values-grid">
-          <div *ngFor="let value of coreValues" class="value-card">
-            <mat-icon>{{ value.icon }}</mat-icon>
-            <h3>{{ value.title }}</h3>
-            <p>{{ value.description }}</p>
-          </div>
-        </div>
-      </section>
-  
-      <!-- Team Section -->
-      <section class="team-section">
-        <h2>Leadership Team</h2>
-        <div class="team-grid">
-          <div *ngFor="let member of teamMembers" class="team-card">
-            <div class="member-photo">
-              <img [src]="member.photo" [alt]="member.name">
-            </div>
-            <div class="member-info">
-              <h3>{{ member.name }}</h3>
-              <p class="role">{{ member.role }}</p>
-              <p class="bio">{{ member.bio }}</p>
-              <div *ngIf="member.socialLinks" class="social-links">
-                <a *ngIf="member.socialLinks.facebook" [href]="member.socialLinks.facebook">
-                  <mat-icon svgIcon="facebook"></mat-icon>
-                </a>
-                <a *ngIf="member.socialLinks.linkedIn" [href]="member.socialLinks.linkedIn">
-                  <mat-icon svgIcon="linkedin"></mat-icon>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-  
-      <!-- Milestones Section -->
-      <section class="milestones-section">
-        <h2>Our Journey</h2>
-        <div class="timeline">
-          <div *ngFor="let milestone of milestones" class="milestone">
-            <div class="year">{{ milestone.year }}</div>
-            <div class="content">
-              <mat-icon>{{ milestone.icon }}</mat-icon>
-              <h3>{{ milestone.title }}</h3>
-              <p>{{ milestone.description }}</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <h1>Our Community Story</h1>
+      <p>Connecting South Sudanese in France since 2023</p>
     </div>
-  </section>
+  </div>
+
+  <div class="container">
+    <!-- Mission Section -->
+    <section class="mission-section">
+      <div class="text-content">
+        <h2>Our Mission</h2>
+        <p>{{ missionStatement }}</p>
+      </div>
+      <div class="image-content">
+        <img
+          src="../../../assets/images/culture1.jpg"
+          alt="Community gathering"
+        />
+      </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision-section">
+      <div class="image-content">
+        <img
+          src="../../../assets/images/childernl.jpeg"
+          alt="Children learning"
+        />
+      </div>
+      <div class="text-content">
+        <h2>Our Vision</h2>
+        <p>{{ visionStatement }}</p>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+      <h2>Core Values</h2>
+      <div class="values-grid">
+        <div *ngFor="let value of coreValues" class="value-card">
+          <mat-icon>{{ value.icon }}</mat-icon>
+          <h3>{{ value.title }}</h3>
+          <p>{{ value.description }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+      <h2>Leadership Team</h2>
+      <div class="team-grid">
+        <div *ngFor="let member of teamMembers" class="team-card">
+          <div class="member-photo">
+            <img [src]="member.photo" [alt]="member.name" />
+          </div>
+          <div class="member-info">
+            <h3>{{ member.name }}</h3>
+            <p class="role">{{ member.role }}</p>
+            <p class="bio">{{ member.bio }}</p>
+            <div *ngIf="member.socialLinks" class="social-links">
+              <a
+                *ngIf="member.socialLinks.facebook"
+                [href]="member.socialLinks.facebook"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                *ngIf="member.socialLinks.linkedIn"
+                [href]="member.socialLinks.linkedIn"
+              >
+              <i class="fab fa-twitter"></i>
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Milestones Section -->
+    <section class="milestones-section">
+      <h2>Our Journey</h2>
+      <div class="timeline">
+        <div *ngFor="let milestone of milestones" class="milestone">
+          <div class="year">{{ milestone.year }}</div>
+          <div class="content">
+              <h3>{{ milestone.title }}</h3>
+            <p>{{ milestone.description }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>

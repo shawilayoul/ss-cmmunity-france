@@ -11,11 +11,14 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  menuActive = false;
-  isLoggedIn = false; // Set this based on auth status
+  isLoggedIn = false; 
+  isMenuOpen =false;
 
+  closeMenu(): void{
+    this.isMenuOpen = false;
+  }
   toggleMenu() {
-    this.menuActive = !this.menuActive;
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
   logout() {

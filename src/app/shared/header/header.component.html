@@ -5,29 +5,29 @@
         <!-- <img src="assets/logo.png" alt="South Sudanese Community in France"> -->
         <span>South Sudanese Community</span>
       </a>
-      <button mat-icon-button class="menu-button" (click)="toggleMenu()" aria-label="Toggle menu">
+      <button mat-icon-button class="menu-button" (click)="toggleMenu()"  [class.active]="isMenuOpen" aria-label="Toggle menu">
         <mat-icon>menu</mat-icon>
       </button>
     </div>
 
-    <nav class="nav" [class.active]="menuActive">
-      <ul class="nav-list">
-        <li class="nav-item">
+    <nav class="nav"  [class.active]="isMenuOpen">
+      <ul class="nav-list" >
+        <li class="nav-item" (click)="closeMenu()">
           <a routerLink="/" class="nav-link" routerLinkActive="active">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" (click)="closeMenu()">
           <a routerLink="/about" class="nav-link" routerLinkActive="active">About</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" (click)="closeMenu()">
           <a routerLink="/events" class="nav-link" routerLinkActive="active">Events</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" (click)="closeMenu()">
           <a routerLink="/members" class="nav-link" routerLinkActive="active">Members</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" (click)="closeMenu()">
           <a routerLink="/contact" class="nav-link" routerLinkActive="active">Contact</a>
         </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
+        <li class="nav-item" *ngIf="isLoggedIn" >
           <a routerLink="/admin" class="nav-link" routerLinkActive="active">Admin</a>
         </li>
         <li class="nav-item" *ngIf="isLoggedIn">

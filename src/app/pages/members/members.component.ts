@@ -8,27 +8,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipListbox, MatChip } from '@angular/material/chips';
-
-export interface Member {
-  id: string;
-  name: string;
-  role?: 'member' | 'volunteer' | 'organizer' | 'admin';
-  region: string; // South Sudanese region of origin
-  profilePhoto?: string;
-  skills?: string[];
-  joinedDate: Date;
-  contact?: {
-whatsapp: any;
-    email?: string;
-    phone?: string;
-    socialMedia?: {
-      facebook?: string;
-      whatsapp?: string;
-    };
-  };
-  bio?: string;
-  isActive?: boolean;
-}
+import { Member } from './members.model';
 
 @Component({
   selector: 'app-members',
@@ -58,7 +38,7 @@ throw new Error('Method not implemented.');
       name: 'Achol Deng',
       role: 'organizer',
       region: 'Upper Nile',
-      profilePhoto: 'assets/profiles/achol.jpg',
+      profilePhoto:'../../../assets/images/ochol.jpg',
       skills: ['Event Planning', 'Translation'],
       joinedDate: new Date(2020, 2, 15),
       contact: {
@@ -75,6 +55,34 @@ throw new Error('Method not implemented.');
       name: 'Michael Lado',
       role: 'volunteer',
       region: 'Equatoria',
+            profilePhoto: '../../../assets/images/ochol.jpg',
+      joinedDate: new Date(2021, 5, 10),
+      skills: ['Web Development', 'Tutoring'],
+      isActive: true,
+    },
+    {
+      id: '1',
+      name: 'Achol Deng',
+      role: 'organizer',
+      region: 'Upper Nile',
+      profilePhoto:'../../../assets/images/ochol.jpg',
+      skills: ['Event Planning', 'Translation'],
+      joinedDate: new Date(2020, 2, 15),
+      contact: {
+        socialMedia: {
+          whatsapp: '+33 6 12 34 56 78',
+        },
+        whatsapp: undefined
+      },
+      bio: 'Community organizer since 2020, helps with youth programs',
+      isActive: true,
+    },
+    {
+      id: '2',
+      name: 'Michael Lado',
+      role: 'member',
+      region: 'Equatoria',
+            profilePhoto: '../../../assets/images/ochol.jpg',
       joinedDate: new Date(2021, 5, 10),
       skills: ['Web Development', 'Tutoring'],
       isActive: true,
