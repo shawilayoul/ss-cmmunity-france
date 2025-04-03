@@ -3,7 +3,7 @@
     <h1>Building a Stronger South Sudanese Community in France</h1>
     <p>Connecting, supporting, and celebrating our heritage since 2023</p>
     <div class="cta-buttons">
-      <button mat-raised-button color="primary" routerLink="/members">Join Us</button>
+      <button mat-raised-button color="primary"  (click)="openMembershipRequest()">Join Us</button>
       <button mat-stroked-button color="primary" routerLink="/events">See Events</button>
     </div>
   </div>
@@ -81,7 +81,7 @@
     <h2>Ready to Get Involved?</h2>
     <p>Join our community and help preserve South Sudanese culture in France</p>
     <div class="cta-buttons">
-      <button mat-raised-button color="primary" routerLink="/members">Become a Member</button>
+      <button mat-raised-button color="primary" (click)="openMembershipRequest()">Become a Member</button>
       <button mat-stroked-button color="primary" routerLink="/contact">Contact Us</button>
     </div>
   </div>

@@ -1,0 +1,151 @@
+@import '../../../styles/variables';
+
+.gallery-page {
+  .gallery-hero {
+    background: linear-gradient(rgba($primary-color, 0.8), rgba($primary-color, 0.8)), 
+                url('../../../assets/images/Cultural2.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 6rem 0;
+    text-align: center;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+  }
+
+  .container {
+    max-width: $container-max-width;
+    margin: 2rem auto;
+    padding: 0 $spacing-md;
+  }
+
+  .gallery-controls {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    margin: $spacing-xxl 0;
+
+    @media (min-width: $breakpoint-md) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-filter {
+      flex: 1;
+      max-width: 400px;
+
+      mat-form-field {
+        width: 100%;
+      }
+    }
+
+    .category-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $spacing-xs;
+
+      button {
+        border-radius: 20px;
+        transition: all 0.3s;
+
+        &.active {
+          background-color: $primary-color;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .gallery-grid {
+    display: grid;
+    gap: $spacing-md;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    margin-bottom: $spacing-xxl;
+
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+  }
+
+  .gallery-item {
+    cursor: pointer;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: translateY(-5px);
+
+      .overlay {
+        opacity: 1;
+      }
+    }
+
+    .image-container {
+      position: relative;
+      border-radius: $border-radius-lg;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: $box-shadow-sm;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: white;
+      padding: $spacing-lg;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+
+      h3 {
+        margin: 0 0 $spacing-xs;
+        font-size: 1.1rem;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: $spacing-xxl 0;
+    color: rgba($dark-color, 0.5);
+
+    mat-icon {
+      font-size: 3rem;
+      width: auto;
+      height: auto;
+      margin-bottom: $spacing-md;
+    }
+
+    h3 {
+      margin-bottom: $spacing-xs;
+      color: $dark-color;
+    }
+  }
+}

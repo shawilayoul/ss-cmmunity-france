@@ -1,0 +1,24 @@
+<div class="lightbox-overlay" *ngIf="item" (click)="close.emit()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <button mat-icon-button class="close-button" (click)="close.emit()">
+        <mat-icon>close</mat-icon>
+      </button>
+      
+      <img [src]="item.imageUrl" [alt]="item.title" class="lightbox-image">
+      
+      <div class="lightbox-info">
+        <h2>{{ item.title }}</h2>
+        <p *ngIf="item.date">{{ item.date | date:'mediumDate' }}</p>
+        <p *ngIf="item.description">{{ item.description }}</p>
+      </div>
+      
+      <div class="navigation-buttons">
+        <button mat-icon-button (click)="onNavigate('prev'); $event.stopPropagation()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onNavigate('next'); $event.stopPropagation()">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>

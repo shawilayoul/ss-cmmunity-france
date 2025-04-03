@@ -1,0 +1,153 @@
+// Using your provided variables
+@import "../../../styles/variables";
+
+// Using your variables
+.membership-dialog {
+    background: $white;
+    border-radius: $border-radius-lg;
+    box-shadow: $box-shadow-lg;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  
+    .dialog-header {
+      padding: $spacing-xl;
+      background: $primary-color;
+      color: $white;
+  
+      .dialog-title {
+        margin: 0;
+        font-size: $font-size-xl;
+        display: flex;
+        align-items: center;
+        gap: $spacing-md;
+  
+        .material-icons {
+          font-size: $font-size-xxl;
+          color: $secondary-color;
+        }
+      }
+    }
+  
+    .dialog-body {
+      padding: $spacing-xl;
+      overflow-y: auto;
+      flex-grow: 1;
+  
+      .membership-form {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-lg;
+      }
+  
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xs;
+  
+        label {
+          font-weight: 600;
+          color: $dark-color;
+          font-size: $font-size-base;
+        }
+  
+        input, select, textarea {
+          padding: $spacing-sm $spacing-md;
+          border: 1px solid rgba($black, 0.2);
+          border-radius: $border-radius;
+          font-size: $font-size-base;
+          font-family: $font-family;
+          transition: all $transition-fast;
+  
+          &:focus {
+            outline: none;
+            border-color: $secondary-color;
+            box-shadow: 0 0 0 2px rgba($secondary-color, 0.2);
+          }
+        }
+  
+        textarea {
+          min-height: 80px;
+          resize: vertical;
+        }
+  
+        select {
+          appearance: none;
+          background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right $spacing-md center;
+          background-size: 1em;
+        }
+      }
+    }
+  
+    .dialog-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: $spacing-md;
+      padding: $spacing-lg $spacing-xl;
+      border-top: 1px solid rgba($black, 0.1);
+      background: $light-color;
+  
+      button {
+        padding: $spacing-sm $spacing-lg;
+        border-radius: $border-radius;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all $transition-fast;
+        font-family: $font-family;
+        font-size: $font-size-base;
+      }
+  
+      .cancel-btn {
+        background: transparent;
+        border: 1px solid rgba($black, 0.2);
+        color: $dark-color;
+  
+        &:hover {
+          background: rgba($black, 0.05);
+        }
+      }
+  
+      .submit-btn {
+        background: $secondary-color;
+        color: $white;
+        border: none;
+  
+        &:hover:not(:disabled) {
+          background: $secondary-color;
+        }
+  
+        &:disabled {
+          background: rgba($black, 0.1);
+          color: rgba($black, 0.4);
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+  
+  // Responsive adjustments
+  @media (max-width: $breakpoint-md) {
+    .membership-dialog {
+      max-width: 95vw;
+  
+      .dialog-header,
+      .dialog-body,
+      .dialog-footer {
+        padding: $spacing-md;
+      }
+  
+      .dialog-footer {
+        flex-wrap: wrap;
+  
+        button {
+          flex: 1;
+          min-width: 120px;
+        }
+      }
+    }
+  }

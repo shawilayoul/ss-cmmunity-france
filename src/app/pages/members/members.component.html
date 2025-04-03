@@ -1,77 +1,130 @@
 <section class="members-page">
-    <div class="container">
-      <h1>Our Community Members</h1>
-      
-      <div class="member-controls">
-        <!-- Search -->
-        <mat-form-field appearance="outline" class="search-field">
-          <mat-label>Search Members</mat-label>
-          <input 
-            matInput 
-            [(ngModel)]="searchTerm" 
-            (input)="searchMembers()"
-            placeholder="Name, region or skills">
-          <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
-  
-        <!-- Filter -->
-        <div class="filter-buttons">
-          <button 
-            *ngFor="let role of ['all', 'member', 'volunteer', 'organizer']"
-            (click)="filterByRole(role)">
-            {{ role | titlecase }}
-          </button>
-        </div>
+  <div class="container">
+    <!-- Header Section -->
+    <div class="page-header">
+      <div class="header-content">
+        <h1 class="page-title">Connect With Our Community</h1>
+        <p class="page-subtitle">
+          Meet the South Sudanese diaspora making a difference in France
+        </p>
       </div>
-  
-      <div class="members-grid">
-        <div *ngFor="let member of filteredMembers" class="member-card">
-          <div class="member-photo">
-            <img 
-              [src]="member.profilePhoto || 'assets/profiles/default.jpg'" 
-              [alt]="member.name + ' profile photo'">
-          </div>
-          
-          <div class="member-info">
-            <h2>{{ member.name }}</h2>
-            <div class="member-meta">
-              <span class="role-badge" [class]="member.role || 'member'">
-                {{ (member.role || 'member') | titlecase }}
-              </span>
-              <span class="region">
-                <mat-icon>place</mat-icon> {{ member.region }}
-              </span>
-              <span class="joined">
-                <mat-icon>event</mat-icon> 
-                Member since {{ member.joinedDate | date:'yyyy' }}
-              </span>
-            </div>
-  
-            <div *ngIf="member.skills" class="skills">
-              <mat-chip-listbox>
-                <mat-chip *ngFor="let skill of member.skills">{{ skill }}</mat-chip>
-              </mat-chip-listbox>
-            </div>
-  
-            <p *ngIf="member.bio" class="bio">{{ member.bio }}</p>
-  
-            <div *ngIf="member.contact" class="contact-options">
-              <a *ngIf="member.contact.whatsapp" 
-                 href="https://wa.me/{{ member.contact.whatsapp }}" 
-                 target="_blank"
-                 mat-icon-button
-                 matTooltip="Contact via WhatsApp">
-                <mat-icon svgIcon="whatsapp"></mat-icon>
-              </a>
-              <button *ngIf="member.contact.email" 
-                      mat-icon-button
-                      matTooltip="Send email"
-                      (click)="sendEmail(member.contact.email)">
-                <mat-icon>email</mat-icon>
-              </button>
-            </div>
-          </div>
-        </div>
+      <button
+        mat-raised-button
+        color="accent"
+        class="join-button"
+        (click)="openMembershipRequest()"
+      >
+        <mat-icon>group_add</mat-icon>
+        Become a Member
+      </button>
+    </div>
+
+    <!-- Controls Section -->
+    <div class="member-controls">
+      <div class="search-container">
+        <mat-form-field appearance="fill" class="search-field">
+          <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput
+            [(ngModel)]="searchTerm"
+            (input)="searchMembers()"
+            placeholder="Find members by name, skills, or region"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="filter-container">
+        <mat-button-toggle-group [(value)]="activeFilter" class="role-filters">
+          <mat-button-toggle
+            *ngFor="let role of ['all', 'member', 'volunteer', 'organizer']"
+            [value]="role"
+            (click)="filterByRole(role)"
+          >
+            {{ role | titlecase }}
+          </mat-button-toggle>
+        </mat-button-toggle-group>
       </div>
     </div>
-  </section>
+
+    <!-- Members Grid -->
+    <div class="members-grid">
+      <mat-card *ngFor="let member of filteredMembers" class="member-card">
+        <div class="card-header">
+          <div class="member-photo">
+            <img
+              [src]="member.profilePhoto || 'assets/profiles/default.jpg'"
+              [alt]="member.name + ' profile photo'"
+            />
+            <div class="online-status" [class.active]="member.isActive"></div>
+          </div>
+          <div class="member-basic-info">
+            <h2 class="member-name">{{ member.name }}</h2>
+            <span class="member-role" [class]="member.role || 'member'">
+              {{ member.role || "member" | titlecase }}
+            </span>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="card-content">
+          <div class="member-details">
+            <div class="detail-item">
+              <mat-icon>location_on</mat-icon>
+              <span>{{ member.region }}</span>
+            </div>
+            <div class="detail-item">
+              <mat-icon>event</mat-icon>
+              <span>Joined {{ member.joinedDate | date : "MMM yyyy" }}</span>
+            </div>
+          </div>
+
+          <div *ngIf="member.skills" class="skills-section">
+            <h3 class="section-title">Skills & Expertise</h3>
+            <mat-chip-listbox class="skills-list">
+              <mat-chip *ngFor="let skill of member.skills" class="skill-chip">
+                {{ skill }}
+              </mat-chip>
+            </mat-chip-listbox>
+          </div>
+
+          <div *ngIf="member.bio" class="bio-section">
+            <h3 class="section-title">About</h3>
+            <p class="bio-text">{{ member.bio }}</p>
+          </div>
+        </div>
+
+        <mat-card-actions class="card-actions">
+          <button
+            mat-stroked-button
+            color="primary"
+            class="action-button"
+            *ngIf="member.contact?.whatsapp"
+            (click)="openWhatsApp(member.contact?.whatsapp)"
+          >
+            <mat-icon>chat</mat-icon> WhatsApp
+          </button>
+          <button
+            mat-stroked-button
+            color="primary"
+            class="action-button"
+            *ngIf="member.contact?.email"
+            (click)="sendEmail(member.contact?.email)"
+          >
+            <mat-icon>email</mat-icon> Email
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="filteredMembers.length === 0" class="empty-state">
+      <mat-icon class="empty-icon">group_off</mat-icon>
+      <h3>No members found</h3>
+      <p>Try adjusting your search or filters</p>
+      <button mat-button color="primary" (click)="resetFilters()">
+        Reset Filters
+      </button>
+    </div>
+  </div>
+</section>

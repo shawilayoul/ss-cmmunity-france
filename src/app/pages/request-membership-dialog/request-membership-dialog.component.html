@@ -1,0 +1,65 @@
+<div class="membership-dialog">
+    <div class="dialog-header">
+      <h2 class="dialog-title">
+        <i class="material-icons">group_add</i>
+        Join Our Community
+      </h2>
+    </div>
+  
+    <div class="dialog-body">
+      <form [formGroup]="membershipForm" (ngSubmit)="onSubmit()" class="membership-form">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" formControlName="fullName" required>
+        </div>
+  
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email" required>
+        </div>
+  
+        <!-- Phone -->
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" formControlName="phone">
+        </div>
+  
+        <!-- Region -->
+        <div class="form-group">
+          <label for="region">Region</label>
+          <select id="region" formControlName="region" required>
+            <option *ngFor="let region of regions" [value]="region">{{region}}</option>
+          </select>
+        </div>
+  
+        <!-- Skills -->
+        <div class="form-group">
+          <label for="skills">Skills (optional)</label>
+          <textarea id="skills" formControlName="skills" rows="2"></textarea>
+        </div>
+  
+        <!-- Interests -->
+        <div class="form-group">
+          <label for="interests">Community Interests</label>
+          <textarea id="interests" formControlName="interests" rows="2"></textarea>
+        </div>
+  
+        <!-- Message -->
+        <div class="form-group">
+          <label for="message">Why do you want to join? (optional)</label>
+          <textarea id="message" formControlName="message" rows="3"></textarea>
+        </div>
+      </form>
+    </div>
+  
+    <div class="dialog-footer">
+      <button type="button" class="cancel-btn" (click)="onCancel()">Cancel</button>
+      <button type="submit" class="submit-btn" 
+              (click)="onSubmit()" 
+              [disabled]="membershipForm.invalid">
+        Submit Request
+      </button>
+    </div>
+  </div>

@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { Testimonial, Event } from './home.model';
 import { HomeService } from '../../services/home.service';
+import { RequestMembershipDialogComponent } from '../request-membership-dialog/request-membership-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +22,9 @@ import { HomeService } from '../../services/home.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private homeService: HomeService) {}
+  constructor(private homeService: HomeService,
+     private dialog: MatDialog,
+  ) {}
 
   upcomingEvents: any[] = [];
   testimonials: Testimonial[] = [];
@@ -35,4 +39,20 @@ export class HomeComponent implements OnInit {
     { number: '5', label: 'Volunteers' },
     { number: '10', label: 'Cities' },
   ];
+
+  
+    openMembershipRequest() {
+      const dialogRef = this.dialog.open(RequestMembershipDialogComponent, {
+        width: '600px',
+        maxWidth: '90vw'
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          // Handle the submitted form data
+          console.log('Membership request submitted:', result);
+          // You would typically send this to your backend here
+        }
+      });
+    }
 }

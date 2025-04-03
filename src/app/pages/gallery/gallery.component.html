@@ -1,0 +1,89 @@
+<section class="gallery-page">
+  <div class="gallery-hero">
+    <div class="container">
+      <h1>Our Community Gallery</h1>
+      <p>Moments that celebrate our South Sudanese heritage in France</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Gallery Controls -->
+    <div class="gallery-controls">
+      <div class="search-filter">
+        <mat-form-field appearance="outline">
+          <mat-label>Search Gallery</mat-label>
+          <input
+            matInput
+            [(ngModel)]="searchQuery"
+            placeholder="Search photos..."
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="category-filter">
+        <button
+          mat-button
+          (click)="setCategory('all')"
+          [class.active]="activeCategory === 'all'"
+        >
+          All
+        </button>
+        <button
+          mat-button
+          (click)="setCategory('cultural')"
+          [class.active]="activeCategory === 'cultural'"
+        >
+          Cultural
+        </button>
+        <button
+          mat-button
+          (click)="setCategory('events')"
+          [class.active]="activeCategory === 'events'"
+        >
+          Events
+        </button>
+        <button
+          mat-button
+          (click)="setCategory('community')"
+          [class.active]="activeCategory === 'community'"
+        >
+          Community
+        </button>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+      <div
+        *ngFor="let item of filteredItems"
+        class="gallery-item"
+        (click)="openLightbox(item)"
+      >
+        <div class="image-container">
+          <img [src]="item.imageUrl" [alt]="item.title" loading="lazy" />
+          <div class="overlay">
+            <h3>{{ item.title }}</h3>
+            <p *ngIf="item.date">{{ item.date | date : "mediumDate" }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="filteredItems.length === 0" class="empty-state">
+      <mat-icon>photo_library</mat-icon>
+      <h3>No photos found</h3>
+      <p>Try changing your search or filter criteria</p>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal (would be implemented separately) -->
+  <app-lightbox
+    *ngIf="selectedItem"
+    [item]="selectedItem"
+    (close)="selectedItem = null"
+    (navClick)="onLightboxNav($event)"
+  >
+  </app-lightbox>
+</section>
