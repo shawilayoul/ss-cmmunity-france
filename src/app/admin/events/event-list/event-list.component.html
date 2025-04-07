@@ -1,0 +1,46 @@
+<!-- src/app/events/event-list/event-list.component.html -->
+<div class="event-list-container">
+    <div class="header">
+      <h2>Manage Events</h2>
+      <div class="actions">
+        <input type="text" [(ngModel)]="searchTerm" (input)="filterEvents()" placeholder="Search events..." class="search-input">
+        <button routerLink="/admin/events/new" class="btn-add">Add New Event</button>
+      </div>
+    </div>
+  
+    <div *ngIf="isLoading" class="loading">Loading events...</div>
+  
+    <div *ngIf="!isLoading && filteredEvents.length === 0" class="no-events">
+      No events found. <a routerLink="/admin/events/new">Create a new one</a>.
+    </div>
+  
+    <table *ngIf="!isLoading && filteredEvents.length > 0" class="events-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Featured</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of filteredEvents">
+          <td>{{ event.title }}</td>
+          <td>{{ event.date | date:'medium' }}</td>
+          <td>{{ event.category }}</td>
+          <td>{{ event.price | currency }}</td>
+          <td>
+            <span class="featured-badge" [class.featured]="event.isFeatured">
+              {{ event.isFeatured ? 'Yes' : 'No' }}
+            </span>
+          </td>
+          <td class="actions">
+            <button (click)="editEvent(event.id)" class="btn-edit">Edit</button>
+            <button (click)="deleteEvent(event.id)" class="btn-delete">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

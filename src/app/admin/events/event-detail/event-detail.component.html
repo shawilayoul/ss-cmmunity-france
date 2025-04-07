@@ -1,0 +1,67 @@
+<div class="event-detail-container">
+    <div *ngIf="isLoading" class="loading">Loading event details...</div>
+  
+    <div *ngIf="!isLoading && !event" class="not-found">
+      Event not found. <a routerLink="/admin/events">Back to list</a>
+    </div>
+  
+    <div *ngIf="!isLoading && event" class="event-card">
+      <div class="event-header">
+        <h2>{{ event.title }}</h2>
+        <div class="event-actions">
+          <button (click)="editEvent()" class="btn-edit">Edit</button>
+          <button (click)="deleteEvent()" class="btn-delete">Delete</button>
+        </div>
+      </div>
+  
+      <div class="event-image">
+        <img [src]="event.imageUrl" [alt]="event.title">
+      </div>
+  
+      <div class="event-meta">
+        <div class="meta-item">
+          <span class="meta-label">Date:</span>
+          <span class="meta-value">{{ event.date | date:'fullDate' }} at {{ event.date | date:'shortTime' }}</span>
+        </div>
+        <div *ngIf="event.endDate" class="meta-item">
+          <span class="meta-label">End Date:</span>
+          <span class="meta-value">{{ event.endDate | date:'fullDate' }} at {{ event.endDate | date:'shortTime' }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category:</span>
+          <span class="meta-value">{{ event.category }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Price:</span>
+          <span class="meta-value">{{ event.price | currency }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Organizer:</span>
+          <span class="meta-value">{{ event.organizer }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Contact Email:</span>
+          <span class="meta-value">{{ event.contactEmail }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Registration Link:</span>
+          <span class="meta-value">
+            <a [href]="event.registrationLink" target="_blank">{{ event.registrationLink }}</a>
+          </span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Attendees:</span>
+          <span class="meta-value">{{ event.attendees }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Featured:</span>
+          <span class="meta-value">{{ event.isFeatured ? 'Yes' : 'No' }}</span>
+        </div>
+      </div>
+  
+      <div class="event-description">
+        <h3>Description</h3>
+        <p>{{ event.description }}</p>
+      </div>
+    </div>
+  </div>
