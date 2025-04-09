@@ -8,59 +8,35 @@
           let category of ['all', 'cultural', 'educational', 'social', 'sports']
         "
         [class.active]="activeFilter === category"
-        (click)="filterEvents(category)"
       >
         {{ category | titlecase }}
       </button>
     </div>
 
-    <div class="events-grid">
-      <div
-        *ngFor="let event of filteredEvents"
-        class="event-card"
-        [class.featured]="event.isFeatured"
-      >
-        <div class="event-image" *ngIf="event.imageUrl">
-          <img [src]="event.imageUrl" [alt]="event.title" />
-        </div>
-
-        <div class="event-details">
-          <div class="event-date">
-            <span class="day">{{ event.date | date : "d" }}</span>
-            <span class="month">{{ event.date | date : "MMM" }}</span>
+    <div class="recent-events">
+      <h2>Recent Events</h2>
+      <div class="event-grid">
+        <div *ngFor="let event of recentEvents" class="event-card">
+          <div class="event-image">
+            <img [src]="event.imageUrl" [alt]="event.title" />
+            <span *ngIf="event.isFeatured" class="featured-badge"
+              >Featured</span
+            >
           </div>
-
-          <div class="event-content">
-            <h2>{{ event.title }}</h2>
-            <p class="event-meta">
-              <mat-icon>schedule</mat-icon>
-              {{ event.date | date : "mediumTime" }}
-              <mat-icon>location_on</mat-icon> {{ event.location.name }},
-              {{ event.location.city }}
-              <span *ngIf="event.price !== undefined">
-                <mat-icon>euro</mat-icon>
-                {{ event.price > 0 ? (event.price | currency) : "Free" }}
-              </span>
-            </p>
-
-            <p class="event-description">{{ event.description }}</p>
-
+          <div class="event-details">
+            <h3>{{ event.title }}</h3>
+            <p class="event-date">{{ event.date | date : "mediumDate" }}</p>
+            <p class="event-category">{{ event.category }}</p>
             <div class="event-actions">
-              <a
-                *ngIf="event.registrationLink"
-                [routerLink]="event.registrationLink"
-                class="btn primary"
+              <button
+                [routerLink]="['/admin/events/edit', event.id]"
+                class="btn-edit"
               >
-                Register
-              </a>
-              <a
-                *ngIf="event.location.googleMapsLink"
-                [href]="event.location.googleMapsLink"
-                target="_blank"
-                class="btn secondary"
-              >
-                View Location
-              </a>
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button (click)="viewDetails(event.id)" class="btn-view">
+                <i class="fas fa-eye"></i> View
+              </button>
             </div>
           </div>
         </div>

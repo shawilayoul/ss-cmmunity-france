@@ -1,0 +1,128 @@
+<section class="members-page">
+    <div class="container">
+      <!-- Header Section -->
+      <div class="page-header">
+        <div class="header-content">
+          <h1 class="page-title">Community members</h1>
+        </div>
+        <button
+          mat-raised-button
+          color="accent"
+          class="join-button"
+          (click)="openMembershipRequest()"
+        >
+          <mat-icon>group_add</mat-icon>
+          Become a Member
+        </button>
+      </div>
+  
+      <!-- Controls Section -->
+      <div class="member-controls">
+        <div class="search-container">
+          <mat-form-field appearance="fill" class="search-field">
+            <mat-icon matPrefix>search</mat-icon>
+            <input
+              matInput
+              [(ngModel)]="searchTerm"
+              (input)="searchMembers()"
+              placeholder="Find members by name, skills, or region"
+            />
+          </mat-form-field>
+        </div>
+  
+        <div class="filter-container">
+          <mat-button-toggle-group [(value)]="activeFilter" class="role-filters">
+            <mat-button-toggle
+              *ngFor="let role of ['all', 'member', 'volunteer', 'organizer']"
+              [value]="role"
+              (click)="filterByRole(role)"
+            >
+              {{ role | titlecase }}
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+  
+      <!-- Members Grid -->
+      <div class="members-grid">
+        <mat-card *ngFor="let member of filteredMembers" class="member-card">
+          <div class="card-header">
+            <div class="member-photo">
+              <img
+                [src]="member.profilePhoto || 'assets/profiles/default.jpg'"
+                [alt]="member.name + ' profile photo'"
+              />
+              <div class="online-status" [class.active]="member.isActive"></div>
+            </div>
+            <div class="member-basic-info">
+              <h2 class="member-name">{{ member.name }}</h2>
+              <span class="member-role" [class]="member.role || 'member'">
+                {{ member.role || "member" | titlecase }}
+              </span>
+            </div>
+          </div>
+  
+          <mat-divider></mat-divider>
+  
+          <div class="card-content">
+            <div class="member-details">
+              <div class="detail-item">
+                <mat-icon>location_on</mat-icon>
+                <span>{{ member.region }}</span>
+              </div>
+              <div class="detail-item">
+                <mat-icon>event</mat-icon>
+                <span>Joined {{ member.joinedDate | date : "MMM yyyy" }}</span>
+              </div>
+            </div>
+  
+            <div *ngIf="member.skills" class="skills-section">
+              <h3 class="section-title">Skills & Expertise</h3>
+              <mat-chip-listbox class="skills-list">
+                <mat-chip *ngFor="let skill of member.skills" class="skill-chip">
+                  {{ skill }}
+                </mat-chip>
+              </mat-chip-listbox>
+            </div>
+  
+            <div *ngIf="member.bio" class="bio-section">
+              <h3 class="section-title">About</h3>
+              <p class="bio-text">{{ member.bio }}</p>
+            </div>
+          </div>
+  
+          <mat-card-actions class="card-actions">
+            <button
+              mat-stroked-button
+              color="primary"
+              class="action-button"
+              *ngIf="member?.phone"
+              (click)="openWhatsApp(member?.phone)"
+            >
+              <mat-icon>chat</mat-icon> WhatsApp
+            </button>
+            <button
+              mat-stroked-button
+              color="primary"
+              class="action-button"
+              *ngIf="member?.email"
+              (click)="sendEmail(member?.email)"
+            >
+              <mat-icon>email</mat-icon> Email
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+  
+      <!-- Empty State -->
+      <div *ngIf="filteredMembers.length === 0" class="empty-state">
+        <mat-icon class="empty-icon">group_off</mat-icon>
+        <h3>No members found</h3>
+        <p>Try adjusting your search or filters</p>
+        <button mat-button color="primary" (click)="resetFilters()">
+          Reset Filters
+        </button>
+      </div>
+    </div>
+  </section>
+  

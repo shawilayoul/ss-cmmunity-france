@@ -1,118 +1,36 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Event } from '../pages/events/events.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class EventService {
-  constructor() {}
+export class EventsService {
+  private apiUrl = 'http://localhost:8080/api/events';
 
-  getEvents() {
-    return [
-      {
-        id: '1',
-        title: 'South Sudanese Cultural Festival',
-        description: 'Annual celebration featuring traditional dances, music, and cuisine from all South Sudanese regions.',
-        date: new Date(2024, 6, 15),
-        endDate: new Date(2024, 6, 16),
-        location: {
-          name: 'Maison des Cultures',
-          address: '35 Rue Léon Gambetta',
-          city: 'Paris',
-          googleMapsLink: 'https://goo.gl/maps/example'
-        },
-        imageUrl: '../../../assets/images/Cultural2.jpg',
-        category: 'cultural',
-        organizer: 'SS Community Council',
-        contactEmail: 'culture@sscommunity.fr',
-        attendees: 120,
-        isFeatured: true
-      },
-      {
-        id: '2',
-        title: 'French Language Workshop',
-        description: 'Free intensive French course for beginners with certified instructors.',
-        date: new Date(2024, 5, 10),
-        location: {
-          name: 'Community Learning Center',
-          address: '22 Rue de la Liberté',
-          city: 'Lyon'
-        },
-        imageUrl: '../../../assets/images/frends.jpeg',
-        category: 'educational',
-        price: 0,
-        organizer: 'Education Committee',
-        registrationLink: '/register/french-workshop'
-      },
-      {
-        id: '3',
-        title: 'South Sudanese Cultural Festival',
-        description: 'Annual celebration featuring traditional dances, music, and cuisine from all South Sudanese regions.',
-        date: new Date(2024, 6, 15),
-        endDate: new Date(2024, 6, 16),
-        location: {
-          name: 'Maison des Cultures',
-          address: '35 Rue Léon Gambetta',
-          city: 'Paris',
-          googleMapsLink: 'https://goo.gl/maps/example'
-        },
-        imageUrl: '../../../assets/images/Cultural2.jpg',
-        category: 'cultural',
-        organizer: 'SS Community Council',
-        contactEmail: 'culture@sscommunity.fr',
-        attendees: 120,
-        isFeatured: true
-      },
-      {
-        id: '4',
-        title: 'French Language Workshop',
-        description: 'Free intensive French course for beginners with certified instructors.',
-        date: new Date(2024, 5, 10),
-        location: {
-          name: 'Community Learning Center',
-          address: '22 Rue de la Liberté',
-          city: 'Lyon'
-        },
-        imageUrl: '../../../assets/images/frends.jpeg',
-        category: 'sports',
-        price: 0,
-        organizer: 'Education Committee',
-        registrationLink: '/register/french-workshop'
-      },
-      {
-        id: '5',
-        title: 'South Sudanese Cultural Festival',
-        description: 'Annual celebration featuring traditional dances, music, and cuisine from all South Sudanese regions.',
-        date: new Date(2024, 6, 15),
-        endDate: new Date(2024, 6, 16),
-        location: {
-          name: 'Maison des Cultures',
-          address: '35 Rue Léon Gambetta',
-          city: 'Paris',
-          googleMapsLink: 'https://goo.gl/maps/example'
-        },
-        imageUrl: '../../../assets/images/Cultural2.jpg',
-        category: 'social',
-        organizer: 'SS Community Council',
-        contactEmail: 'culture@sscommunity.fr',
-        attendees: 120,
-        isFeatured: true
-      },
-      {
-        id: '6',
-        title: 'French Language Workshop',
-        description: 'Free intensive French course for beginners with certified instructors.',
-        date: new Date(2024, 5, 10),
-        location: {
-          name: 'Community Learning Center',
-          address: '22 Rue de la Liberté',
-          city: 'Lyon'
-        },
-        imageUrl: '../../../assets/images/frends.jpeg',
-        category: 'sports',
-        price: 0,
-        organizer: 'Education Committee',
-        registrationLink: '/register/french-workshop'
-      }
-    ];
+  constructor(private http: HttpClient) {}
+
+  getEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.apiUrl);
+  }
+
+  getEvent(id: string): Observable<Event> {
+    return this.http.get<Event>(`${this.apiUrl}/${id}`);
+  }
+
+  createEvent(event: Event): Observable<Event> {
+    return this.http.post<Event>(this.apiUrl, event);
+  }
+
+  updateEvent(id: string, event:Event): Observable<Event>{
+    return this.http.put<Event>(`${this.apiUrl}/${id}`,event)
+  }
+
+  deleteEvent(id: string): Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+  getFeaturedEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.apiUrl}?isFeatured=true`);
   }
 }

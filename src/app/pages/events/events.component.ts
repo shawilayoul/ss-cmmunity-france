@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { Event } from './events.model';
-import { EventService } from '../../services/event.service';
+import { EventsService } from '../../services/event.service';
 @Component({
   selector: 'app-events',
   imports: [CommonModule, RouterLink, MatIconModule],
@@ -11,27 +11,31 @@ import { EventService } from '../../services/event.service';
   styleUrl: './events.component.scss',
 })
 export class EventsComponent implements OnInit {
-  events: any[] = [];
-  filteredEvents: any[] = [];
+  totalEvents = 0;
+  upcomingEvents = 0;
+  featuredEvents = 0;
+  recentEvents: Event[] = [];
   activeFilter: string = 'all';
-  constructor(private eventService: EventService) {}
+  constructor(private eventsService: EventsService) {}
 
-  ngOnInit() {
-    this.events = this.eventService.getEvents();
-    this.filteredEvents = this.events;
+  ngOnInit(): void {
+    this.loadDashboardData();
   }
 
-
-  filterEvents(category: string): void {
-    this.activeFilter = category;
-    this.filteredEvents =
-      category === 'all'
-        ? this.events
-        : this.events.filter((event) => event.category === category);
+  loadDashboardData(): void {
+    this.eventsService.getEvents().subscribe((events) => {
+      this.totalEvents = events.length;
+      this.upcomingEvents = events.filter(
+        (e) => new Date(e.date) > new Date()
+      ).length;
+      this.featuredEvents = events.filter((e) => e.isFeatured).length;
+      this.recentEvents = events
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 4);
+    });
   }
 
-  getUpcomingEvents(): Event[] {
-    const today = new Date();
-    return this.events.filter((event) => new Date(event.date) >= today);
+  viewDetails(eventId: string): void {
+    // Implement navigation to details or use dialog
   }
 }

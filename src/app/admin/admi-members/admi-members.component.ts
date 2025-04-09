@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,17 +7,16 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatChipListbox, MatChip } from '@angular/material/chips';
-import { Member } from './members.model';
-import { RequestMembershipDialogComponent } from '../request-membership-dialog/request-membership-dialog.component';
+import { Member } from '../../pages/members/members.model';
+import { RequestMembershipDialogComponent } from '../../pages/request-membership-dialog/request-membership-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MemberService } from '../../services/member.service';
-
+import { CommonModule } from '@angular/common';
 @Component({
-  selector: 'app-members',
-  standalone: true,
+  selector: 'app-admi-members',
   imports: [
     CommonModule,
     FormsModule,
@@ -32,30 +30,59 @@ import { MemberService } from '../../services/member.service';
     MatChip,
     MatButtonToggleModule,
     MatCardModule,
-    MatDividerModule,
-  ],
-  templateUrl: './members.component.html',
-  styleUrls: ['./members.component.scss'],
+    MatDividerModule,],
+  templateUrl: './admi-members.component.html',
+  styleUrl: './admi-members.component.scss'
 })
-export class MembersComponent implements OnInit {
+export class AdmiMembersComponent implements OnInit {
+  searchTerm: string = '';
+  activeFilter: string = 'all';
   members: Member[] = [];
+  filteredMembers: Member[] = [];
 
-  constructor(
-    private fb: FormBuilder,
-    private dialog: MatDialog,
-    private memberService: MemberService
-  ) {}
+  constructor(private fb: FormBuilder, private dialog: MatDialog, private memberService: MemberService) {}
 
   ngOnInit(): void {
-    this.loadMembers();
+    this.loadMembers()
+    this.filteredMembers =[...this.members]
   }
 
-  loadMembers(): void {
-    this.memberService.getMembers().subscribe((members) => {
+  loadMembers():void{
+    this.memberService.getMembers().subscribe(members =>{
       this.members = members;
+    })
+  }
+  filterByRole(role: string): void {
+    this.activeFilter = role;
+    this.applyFilters();
+  }
+
+  searchMembers(): void {
+    this.applyFilters();
+  }
+
+  private applyFilters(): void {
+    this.filteredMembers = this.members.filter((member) => {
+      const matchesRole =
+        this.activeFilter === 'all' || member.role === this.activeFilter;
+      const matchesSearch =
+        this.searchTerm === '' ||
+        member.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        (member.skills &&
+          member.skills.some((skill) =>
+            skill.toLowerCase().includes(this.searchTerm.toLowerCase())
+          )) ||
+        member.region.toLowerCase().includes(this.searchTerm.toLowerCase());
+
+      return matchesRole && matchesSearch;
     });
   }
 
+  resetFilters(): void {
+    this.searchTerm = '';
+    this.activeFilter = 'all';
+    this.filteredMembers = [...this.members];
+  }
 
   openWhatsApp(phone: string | undefined): void {
     if (!phone) {
@@ -87,4 +114,5 @@ export class MembersComponent implements OnInit {
       }
     });
   }
+
 }

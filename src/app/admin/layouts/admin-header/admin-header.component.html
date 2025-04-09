@@ -1,0 +1,52 @@
+  <header class="header">
+    <div class="container">
+      <div class="logo-container">
+        <a routerLink="/" class="logo">
+          <img src="./../../assets/images/communityLogo.svg" alt="South Sudanese Community in France"> 
+          <span>SS Community In France</span>
+        </a>
+        <button
+          mat-icon-button
+          class="menu-button"
+          (click)="toggleMenu()"
+          [class.active]="isMenuOpen"
+          aria-label="Toggle menu"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+  
+      <nav class="nav" [class.active]="isMenuOpen">
+        <ul class="nav-list">
+          <li class="nav-item" (click)="closeMenu()">
+            <a routerLink="/admin" class="nav-link" routerLinkActive="active">Dashboard</a>
+          </li>
+          <li class="nav-item" (click)="closeMenu()">
+            <a routerLink="/admin/eventList" class="nav-link" routerLinkActive="active"
+              >Events</a
+            >
+          </li>
+          <li class="nav-item" (click)="closeMenu()">
+            <a routerLink="/admin/members" class="nav-link" routerLinkActive="active"
+              >Members</a
+            >
+          </li>
+  
+          <li class="nav-item" (click)="closeMenu()">
+            <a routerLink="/admin/gallery" class="nav-link" routerLinkActive="active"
+              >Gallery</a
+            >
+          </li>
+          <li class="nav-item" *ngIf="isLoggedIn">
+            <a routerLink="/admin" class="nav-link" routerLinkActive="active"
+              >Admin</a
+            >
+          </li>
+          <li class="nav-item" *ngIf="isLoggedIn">
+            <a (click)="logout()" class="nav-link">Logout</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  

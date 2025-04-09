@@ -19,36 +19,9 @@
       </button>
     </div>
 
-    <!-- Controls Section -->
-    <div class="member-controls">
-      <div class="search-container">
-        <mat-form-field appearance="fill" class="search-field">
-          <mat-icon matPrefix>search</mat-icon>
-          <input
-            matInput
-            [(ngModel)]="searchTerm"
-            (input)="searchMembers()"
-            placeholder="Find members by name, skills, or region"
-          />
-        </mat-form-field>
-      </div>
-
-      <div class="filter-container">
-        <mat-button-toggle-group [(value)]="activeFilter" class="role-filters">
-          <mat-button-toggle
-            *ngFor="let role of ['all', 'member', 'volunteer', 'organizer']"
-            [value]="role"
-            (click)="filterByRole(role)"
-          >
-            {{ role | titlecase }}
-          </mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </div>
-
     <!-- Members Grid -->
     <div class="members-grid">
-      <mat-card *ngFor="let member of filteredMembers" class="member-card">
+      <mat-card *ngFor="let member of members" class="member-card">
         <div class="card-header">
           <div class="member-photo">
             <img
@@ -99,8 +72,8 @@
             mat-stroked-button
             color="primary"
             class="action-button"
-            *ngIf="member.contact?.whatsapp"
-            (click)="openWhatsApp(member.contact?.whatsapp)"
+            *ngIf="member?.phone"
+            (click)="openWhatsApp(member?.phone)"
           >
             <mat-icon>chat</mat-icon> WhatsApp
           </button>
@@ -108,23 +81,13 @@
             mat-stroked-button
             color="primary"
             class="action-button"
-            *ngIf="member.contact?.email"
-            (click)="sendEmail(member.contact?.email)"
+            *ngIf="member?.email"
+            (click)="sendEmail(member?.email)"
           >
             <mat-icon>email</mat-icon> Email
           </button>
         </mat-card-actions>
       </mat-card>
-    </div>
-
-    <!-- Empty State -->
-    <div *ngIf="filteredMembers.length === 0" class="empty-state">
-      <mat-icon class="empty-icon">group_off</mat-icon>
-      <h3>No members found</h3>
-      <p>Try adjusting your search or filters</p>
-      <button mat-button color="primary" (click)="resetFilters()">
-        Reset Filters
-      </button>
     </div>
   </div>
 </section>

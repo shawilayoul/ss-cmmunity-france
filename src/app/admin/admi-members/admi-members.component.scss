@@ -24,7 +24,7 @@
     }
 
     .page-title {
-      font-size: 2.5rem;
+      font-size: 1.5rem;
       color: $primary-color;
       margin-bottom: 0.5rem;
       font-weight: 600;
@@ -45,6 +45,58 @@
 
       mat-icon {
         margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .member-controls {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    .search-container {
+      flex: 1;
+      min-width: 300px;
+
+      .search-field {
+        width: 100%;
+
+        mat-icon {
+          color: rgba($dark-color, 0.5);
+        }
+      }
+    }
+
+    .filter-container {
+      display: flex;
+      align-items: center;
+
+      .role-filters {
+        border-radius: 50px;
+        overflow: hidden;
+        box-shadow: none;
+        border: 1px solid rgba($primary-color, 0.2);
+
+        mat-button-toggle {
+          border-right: 1px solid rgba($primary-color, 0.1);
+          font-size: 0.9rem;
+          padding: 0 1.2rem;
+
+          &:last-child {
+            border-right: none;
+          }
+
+          &.mat-button-toggle-checked {
+            background-color: rgba($primary-color, 0.1);
+            color: $primary-color;
+            font-weight: 500;
+          }
+        }
       }
     }
   }

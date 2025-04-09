@@ -1,16 +1,22 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { EventsService } from '../events.service';
-import { Event } from '../event/event.module';
+import { EventsService } from '../../../services/event.service';
+import { Event } from '../../../pages/events/events.model';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-event-form',
   standalone: true,
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule]
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
 })
 export class EventFormComponent implements OnInit {
   @Input() event: Event | null = null;
@@ -21,7 +27,8 @@ export class EventFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private eventsService: EventsService  // Inject the service
+    private eventsService: EventsService,
+    private dialogRef: MatDialogRef<EventFormComponent>
   ) {
     this.eventForm = this.fb.group({
       title: ['', Validators.required],
@@ -35,7 +42,7 @@ export class EventFormComponent implements OnInit {
       contactEmail: ['', [Validators.required, Validators.email]],
       registrationLink: ['', Validators.required],
       attendees: [0, Validators.min(0)],
-      isFeatured: [false]
+      isFeatured: [false],
     });
   }
 
@@ -49,10 +56,9 @@ export class EventFormComponent implements OnInit {
     if (this.eventForm.valid) {
       this.isLoading = true;
       this.errorMessage = null;
-      
+
       const formData = this.eventForm.value;
-      
-      // Convert dates to proper format if needed
+
       if (formData.date) {
         formData.date = new Date(formData.date).toISOString();
       }
@@ -64,7 +70,7 @@ export class EventFormComponent implements OnInit {
         next: (createdEvent) => {
           this.isLoading = false;
           this.submitEvent.emit(createdEvent); // Notify parent component
-          // Optionally reset form
+          this.dialogRef.close();
           if (!this.event) {
             this.eventForm.reset();
           }
@@ -73,7 +79,7 @@ export class EventFormComponent implements OnInit {
           this.isLoading = false;
           this.errorMessage = err.message || 'Failed to create event';
           console.error('Error creating event:', err);
-        }
+        },
       });
     }
   }

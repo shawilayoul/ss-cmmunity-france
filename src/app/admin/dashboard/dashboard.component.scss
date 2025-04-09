@@ -1,169 +1,327 @@
-.dashboard-container {
-    padding: 2rem;
-    max-width: 1200px;
+@import '../../../styles/variables';
+.dashboard-pag {
+  font-family: $font-family;
+  background-color: $light-color;
+  min-height: 100vh;
+  padding: $spacing-md;
+  .dashboard-container {
+    max-width: $container-max-width;
     margin: 0 auto;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
   }
-  
+
   .dashboard-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-  
+    flex-direction: column;
+    padding: $spacing-xl;
+    color: $primary-color;
+    
+    @media (min-width: $breakpoint-md) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     h1 {
       margin: 0;
-      color: #333;
-    }
-  }
-  
-  .btn-create {
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: background-color 0.3s;
-  
-    &:hover {
-      background-color: #3a7bc8;
-    }
-  }
-  
-  .dashboard-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-  
-  .stat-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  
-    .stat-value {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #4a90e2;
-      margin-bottom: 0.5rem;
-    }
-  
-    .stat-label {
-      color: #666;
-      font-size: 1rem;
-    }
-  }
-  
-  .recent-events {
-    h2 {
-      margin-bottom: 1.5rem;
-      color: #333;
-    }
-  }
-  
-  .event-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  .event-card {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-  
-    &:hover {
-      transform: translateY(-5px);
-    }
-  }
-  
-  .event-image {
-    position: relative;
-    height: 160px;
-    overflow: hidden;
-  
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  
-    .featured-badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: #ffc107;
-      color: #212529;
-      padding: 0.25rem 0.5rem;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: bold;
-    }
-  }
-  
-  .event-details {
-    padding: 1.5rem;
-  
-    h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.25rem;
-      color: #333;
-    }
-  
-    .event-date {
-      color: #666;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-  
-    .event-category {
-      display: inline-block;
-      background-color: #f0f0f0;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      color: #555;
-      margin-bottom: 1rem;
-    }
-  }
-  
-  .event-actions {
-    display: flex;
-    gap: 0.75rem;
-  
-    button {
-      flex: 1;
-      padding: 0.5rem;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      transition: opacity 0.3s;
-  
-      &:hover {
-        opacity: 0.9;
+      font-size: $font-size-xl;
+      font-weight: 600;
+      
+      @media (min-width: $breakpoint-md) {
+        font-size: $font-size-xxl;
       }
     }
-  
-    .btn-edit {
-      background-color: #ffc107;
-      color: #212529;
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $spacing-md;
+      margin-top: $spacing-md;
+      
+      @media (min-width: $breakpoint-md) {
+        margin-top: 0;
+      }
     }
-  
-    .btn-view {
-      background-color: #6c757d;
-      color: white;
+
+    .btn-create {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      padding: 10px;
+      border-radius: 6px;
+      background-color: $primary-color;
+      color: $white;
+      cursor: pointer;
+      
+      i {
+        font-size: $font-size-sm;
+      }
     }
   }
+
+  .dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+    padding: $spacing-xl;
+    
+    @media (min-width: $breakpoint-sm) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-card {
+      background-color: $white;
+      border-radius: $border-radius-lg;
+      padding: $spacing-lg;
+      box-shadow: $box-shadow-sm;
+      text-align: center;
+      transition: transform $transition-fast ease;
+      
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-value {
+        font-size: $font-size-xxl;
+        font-weight: 700;
+        color: $primary-color;
+        margin-bottom: $spacing-sm;
+      }
+
+      .stat-label {
+        font-size: $font-size-sm;
+        color: $dark-color;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  .dashboard-section {
+    padding: 0 $spacing-xl $spacing-xl;
+    
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba($dark-color, 0.1);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: $spacing-lg;
+
+      h2 {
+        font-size: $font-size-lg;
+        color: $dark-color;
+        margin: 0;
+      }
+
+      .view-all {
+        color: $secondary-color;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color $transition-fast ease;
+        
+        &:hover {
+          color: $secondary-color;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    
+    @media (min-width: $breakpoint-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background-color: $white;
+      border-radius: $border-radius-lg;
+      overflow: hidden;
+      box-shadow: $box-shadow-sm;
+      transition: transform $transition-fast ease, box-shadow $transition-fast ease;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: $box-shadow-md;
+      }
+
+      .card-image {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform $transition-slow ease;
+        }
+
+        .featured-badge, .active-badge {
+          position: absolute;
+          top: $spacing-md;
+          right: $spacing-md;
+          background-color: $secondary-color;
+          color: $white;
+          padding: $spacing-xs $spacing-sm;
+          border-radius: $border-radius;
+          font-size: $font-size-sm * 0.8;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+      }
+
+      .card-details {
+        padding: $spacing-lg;
+
+        h3 {
+          margin: 0 0 $spacing-sm;
+          font-size: $font-size-base;
+          color: $dark-color;
+          font-weight: 600;
+        }
+
+        .meta-info {
+          margin: 0 0 $spacing-sm;
+          font-size: $font-size-sm;
+          color: $dark-color;
+        }
+
+        .card-actions {
+          display: flex;
+          gap: $spacing-sm;
+          margin-top: $spacing-md;
+
+          button {
+            flex: 1;
+            padding: $spacing-sm;
+            font-size: $font-size-sm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: $spacing-xs;
+            
+            i {
+              font-size: $font-size-sm * 0.9;
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    
+    @media (min-width: $breakpoint-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gallery-item {
+      background-color: $white;
+      border-radius: $border-radius-lg;
+      overflow: hidden;
+      box-shadow: $box-shadow-sm;
+
+      .gallery-image-container {
+        height: 200px;
+        overflow: hidden;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform $transition-slow ease;
+        }
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.05);
+        }
+      }
+
+      .gallery-item-details {
+        padding: $spacing-lg;
+
+        h3 {
+          margin: 0 0 $spacing-sm;
+          font-size: $font-size-base;
+          color: $dark-color;
+          font-weight: 600;
+        }
+
+        .meta-info {
+          margin: 0 0 $spacing-sm;
+          font-size: $font-size-sm;
+          color: $dark-color;
+        }
+
+        .gallery-actions {
+          display: flex;
+          gap: $spacing-sm;
+          margin-top: $spacing-md;
+
+          button {
+            flex: 1;
+            padding: $spacing-sm;
+            font-size: $font-size-sm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: $spacing-xs;
+            
+            i {
+              font-size: $font-size-sm * 0.9;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mixin for button styles
+@mixin button-style($text-color, $bg-color) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  border-radius: $border-radius;
+  padding: $spacing-sm $spacing-md;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all $transition-fast ease;
+  box-shadow: 0 2px 4px rgba($black, 0.1);
+  
+  &:hover {
+    background-color: $bg-color;
+    box-shadow: 0 4px 8px rgba($black, 0.2);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($bg-color, 0.3);
+  }
+}

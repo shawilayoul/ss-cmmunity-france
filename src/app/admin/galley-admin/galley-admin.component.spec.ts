@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SettingsComponent } from './settings.component';
+import { GalleyAdminComponent } from './galley-admin.component';
 
-describe('SettingsComponent', () => {
-  let component: SettingsComponent;
-  let fixture: ComponentFixture<SettingsComponent>;
+describe('GalleyAdminComponent', () => {
+  let component: GalleyAdminComponent;
+  let fixture: ComponentFixture<GalleyAdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SettingsComponent]
+      imports: [GalleyAdminComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SettingsComponent);
+    fixture = TestBed.createComponent(GalleyAdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

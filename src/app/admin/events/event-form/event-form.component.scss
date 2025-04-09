@@ -1,17 +1,24 @@
+@import '../../../../styles/variables';
 .eventFrom-page {
-  max-width: 800px;
-  margin: 0 auto;
-  h1 {
+  background: $white;
+  max-width: 600px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+ overflow: hidden; 
+  .title{
     text-align: center;
-    margin-bottom: 1rem;
-    margin-top: 1.5rem;
+    background-color: $primary-color;
+    color: $white;
+    padding: 1rem 0;
   }
   .event-form {
     background: #fff;
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 20px;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
     .error-message {
       color: #dc3545;
       padding: 10px;
