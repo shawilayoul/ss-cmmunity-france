@@ -11,7 +11,8 @@ import { EventListComponent } from './admin/events/event-list/event-list.compone
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AdmiMembersComponent } from './admin/admi-members/admi-members.component';
-import { GalleyAdminComponent } from './admin/galley-admin/galley-admin.component';
+import { GalleryAdminComponent } from './admin/gallery-admin/gallery-admin.component';
+
 
 export const routes: Routes = [
   {
@@ -34,7 +35,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'eventList', component: EventListComponent },
       { path: 'members', component: AdmiMembersComponent },
-      {path:'gallery',component: GalleyAdminComponent}
+      {path:'gallery',component: GalleryAdminComponent}
     ],
   },
 ];

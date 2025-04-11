@@ -1,0 +1,60 @@
+<div class="gallery-container">
+    <div class="gallery-header">
+      <h1>Gallery Management</h1>
+      <button mat-raised-button color="primary" (click)="openAddDialog()">
+        <mat-icon>add</mat-icon> Add New Item
+      </button>
+    </div>
+  
+    <div class="gallery-controls">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Search by title or description" 
+               [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange($event)">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="category-filter">
+        <mat-label>Category</mat-label>
+        <mat-select [(value)]="selectedCategory" (selectionChange)="onCategoryChange($event.value)">
+          <mat-option value="all">All Categories</mat-option>
+          <mat-option value="cultural">Cultural</mat-option>
+          <mat-option value="events">Events</mat-option>
+          <mat-option value="community">Community</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div *ngIf="isLoading" class="loading-spinner">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  
+    <div *ngIf="!isLoading && galleryItems.length === 0" class="no-results">
+      <mat-icon>image_search</mat-icon>
+      <p>No gallery items found</p>
+    </div>
+  
+    <div class="gallery-grid" *ngIf="!isLoading && galleryItems.length > 0">
+      <mat-card class="gallery-card" *ngFor="let item of galleryItems">
+        <div class="card-image" [style.background-image]="'url(' + item.imageUrl + ')'"></div>
+        <mat-card-header>
+          <mat-card-title>{{ item.title }}</mat-card-title>
+          <mat-card-subtitle>
+            <span class="category-badge" [ngClass]="item.category">{{ item.category }}</span>
+            <span *ngIf="item.date">{{ item.date | date:'mediumDate' }}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="item.description">
+          <p>{{ item.description }}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-icon-button color="primary" (click)="openEditDialog(item)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteItem(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>

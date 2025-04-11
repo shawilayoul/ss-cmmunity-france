@@ -1,0 +1,119 @@
+// Colors for categories
+$cultural-color: #1a5276;;
+$events-color: #e67e22;
+$community-color: #4caf50;
+.gallery-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin:  0 auto;
+  height: 100vh;
+}
+
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
+.gallery-controls {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+
+  .search-field {
+    flex: 1;
+    max-width: 400px;
+  }
+
+  .category-filter {
+    width: 200px;
+  }
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: rgba(0, 0, 0, 0.54);
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 16px;
+  }
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.gallery-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px 4px 0 0;
+  }
+
+  mat-card-header {
+    padding: 16px 16px 0;
+  }
+
+  mat-card-content {
+    padding: 0 16px;
+    flex-grow: 1;
+  }
+
+  mat-card-actions {
+    padding: 8px;
+  }
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 8px;
+  color: white;
+
+  &.cultural {
+    background-color: $cultural-color;
+  }
+
+  &.events {
+    background-color: $events-color;
+  }
+
+  &.community {
+    background-color: $community-color;
+  }
+}

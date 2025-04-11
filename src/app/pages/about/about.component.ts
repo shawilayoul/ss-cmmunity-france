@@ -41,7 +41,7 @@ export class AboutComponent {
       name: 'Achol Malek',
       role: 'Cultural Director',
       bio: 'Organizer of cultural events and youth programs',
-      photo: '../../../assets/images/ochol.jpg'
+      photo: 'https://cdn.pixabay.com/photo/2016/11/18/17/08/fashion-1835871_1280.jpg'
     }
   ];
 

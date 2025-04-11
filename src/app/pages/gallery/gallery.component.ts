@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GalleryItem } from './gallery.model';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { LightboxComponent } from '../lightbox/lightbox.component';
+import { GalleryService } from '../../services/gallery.service';
 @Component({
   selector: 'app-gallery',
   imports: [
@@ -21,14 +22,26 @@ import { LightboxComponent } from '../lightbox/lightbox.component';
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit {
   activeCategory: string = 'all';
   searchQuery: string = '';
   selectedItem: GalleryItem | null = null;
-  allItems: GalleryItem[] = []; 
+  allItems: GalleryItem[] = [];
+  galleryItems: GalleryItem[] =[];
   currentIndex: number = 0;
 
-  galleryItems: GalleryItem[] = [
+  constructor(private galleryService: GalleryService) {}
+  ngOnInit(): void {
+    this.loadGallery()
+  }
+
+  loadGallery() {
+    this.galleryService.getGallery().subscribe((gallery) => {
+      this.galleryItems = gallery;
+    });
+  }
+
+ /* galleryItems: GalleryItem[] = [
     {
       id: 1,
       title: 'Independence Day Celebration',
@@ -71,10 +84,11 @@ export class GalleryComponent {
       id: 6,
       title: 'Cultural Fashion Show',
       category: 'cultural',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh38lpInylGCaVHP1vgZSyPlS6gmPQ2eiKlA&s',
+      imageUrl:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh38lpInylGCaVHP1vgZSyPlS6gmPQ2eiKlA&s',
       date: new Date(2023, 10, 18),
     },
-  ];
+  ];*/
 
   get filteredItems() {
     return this.galleryItems.filter((item) => {
@@ -107,18 +121,22 @@ export class GalleryComponent {
 
   onLightboxNav(direction: 'prev' | 'next') {
     if (!this.selectedItem) return;
-  
+
     // Find current index
-    const currentIndex = this.galleryItems.findIndex(item => item.id === this.selectedItem?.id);
-    
+    const currentIndex = this.galleryItems.findIndex(
+      (item) => item.id === this.selectedItem?.id
+    );
+
     // Calculate new index
     let newIndex;
     if (direction === 'prev') {
-      newIndex = currentIndex > 0 ? currentIndex - 1 : this.galleryItems.length - 1;
+      newIndex =
+        currentIndex > 0 ? currentIndex - 1 : this.galleryItems.length - 1;
     } else {
-      newIndex = currentIndex < this.galleryItems.length - 1 ? currentIndex + 1 : 0;
+      newIndex =
+        currentIndex < this.galleryItems.length - 1 ? currentIndex + 1 : 0;
     }
-  
+
     this.selectedItem = this.galleryItems[newIndex];
   }
 }

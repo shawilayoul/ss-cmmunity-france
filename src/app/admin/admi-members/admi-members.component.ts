@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -30,9 +30,10 @@ import { CommonModule } from '@angular/common';
     MatChip,
     MatButtonToggleModule,
     MatCardModule,
-    MatDividerModule,],
+    MatDividerModule,
+  ],
   templateUrl: './admi-members.component.html',
-  styleUrl: './admi-members.component.scss'
+  styleUrl: './admi-members.component.scss',
 })
 export class AdmiMembersComponent implements OnInit {
   searchTerm: string = '';
@@ -40,17 +41,20 @@ export class AdmiMembersComponent implements OnInit {
   members: Member[] = [];
   filteredMembers: Member[] = [];
 
-  constructor(private fb: FormBuilder, private dialog: MatDialog, private memberService: MemberService) {}
+  constructor(
+    private dialog: MatDialog,
+    private memberService: MemberService
+  ) {}
 
   ngOnInit(): void {
-    this.loadMembers()
-    this.filteredMembers =[...this.members]
+    this.loadMembers();
+    this.applyFilters()
   }
 
-  loadMembers():void{
-    this.memberService.getMembers().subscribe(members =>{
+  loadMembers(): void {
+    this.memberService.getMembers().subscribe((members) => {
       this.members = members;
-    })
+    });
   }
   filterByRole(role: string): void {
     this.activeFilter = role;
@@ -114,5 +118,4 @@ export class AdmiMembersComponent implements OnInit {
       }
     });
   }
-
 }
