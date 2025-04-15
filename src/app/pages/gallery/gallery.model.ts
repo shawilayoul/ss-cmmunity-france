@@ -1,9 +1,9 @@
 export interface GalleryItem {
-    id: number;
+    id?: number;
     title: string;
     category: 'cultural' | 'events' | 'community';
-    imageUrl: string;
-    date?: Date;
-    description?: string;
+    imageUrl?: string;
+    date: Date;
+    description: string;
   }
   

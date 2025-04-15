@@ -15,7 +15,17 @@ export class GalleryService {
     getGallery(): Observable<GalleryItem[]> {
       return this.http.get<GalleryItem[]>(this.apiUrl);
     }
-    createGallery(gallery: Partial<GalleryItem>): Observable<GalleryItem> {
-      return this.http.post<GalleryItem>(this.apiUrl, gallery);
+  
+    createGallery(gallery: GalleryItem, imageFile: File): Observable<GalleryItem> {
+
+      const formDate = new FormData();
+      formDate.append('title', gallery.title);
+      formDate.append('category', gallery.category);
+      formDate.append('date', gallery.date?.toString());
+      formDate.append('description', gallery?.description);
+      if(imageFile){
+        formDate.append('imageFile',imageFile)
+      }
+      return this.http.post<GalleryItem>(this.apiUrl, formDate);
     }
 }

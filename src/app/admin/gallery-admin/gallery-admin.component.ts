@@ -49,7 +49,6 @@ export class GalleryAdminComponent implements OnInit {
   loadGalleryItems(): void {
     this.galleryService.getGallery().subscribe((gallery)=>{
       this.isLoading = true;
-
       this.galleryItems = gallery;
       this.filteredItems = [...this.galleryItems];
       this.isLoading = false;

@@ -19,9 +19,29 @@ export class EventsService {
     return this.http.get<Event>(`${this.apiUrl}/${id}`);
   }
 
-  createEvent(event: Event): Observable<Event> {
-    return this.http.post<Event>(this.apiUrl, event);
+
+  createEvent(eventData: Event, imageFile: File): Observable<Event> {
+    const formData = new FormData();
+  
+    formData.append('title', eventData.title);
+    formData.append('description', eventData.description);
+    formData.append('date', eventData.date.toString()); // ou toISOString()
+    formData.append('endDate', eventData.endDate.toString());
+    formData.append('category', eventData.category);
+    formData.append('price', eventData.price.toString());
+    formData.append('organizer', eventData.organizer);
+    formData.append('contactEmail', eventData.contactEmail);
+    formData.append('registrationLink', eventData.registrationLink);
+    formData.append('attendees', eventData.attendees.toString());
+    formData.append('isFeatured', String(eventData.isFeatured));
+  
+    if (imageFile) {
+      formData.append('imageFile', imageFile);
+    }
+  
+    return this.http.post<Event>(this.apiUrl, formData);
   }
+  
 
   updateEvent(id: string, event:Event): Observable<Event>{
     return this.http.put<Event>(`${this.apiUrl}/${id}`,event)

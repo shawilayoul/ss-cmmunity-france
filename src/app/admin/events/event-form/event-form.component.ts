@@ -35,7 +35,7 @@ export class EventFormComponent implements OnInit {
       description: ['', Validators.required],
       date: ['', Validators.required],
       endDate: [''],
-      imageUrl: ['', Validators.required],
+      //imageUrl: ['', Validators.required],
       category: ['', Validators.required],
       price: [0, Validators.min(0)],
       organizer: ['', Validators.required],
@@ -51,36 +51,48 @@ export class EventFormComponent implements OnInit {
       this.eventForm.patchValue(this.event);
     }
   }
+  selectedImageFile: any | null = null;
+
+  onFileSelected(event: any): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedImageFile = input.files[0];
+      console.log('Selected file:', this.selectedImageFile);
+    }
+  }
 
   onSubmit(): void {
     if (this.eventForm.valid) {
       this.isLoading = true;
       this.errorMessage = null;
 
-      const formData = this.eventForm.value;
+      const eventData = this.eventForm.value;
 
-      if (formData.date) {
-        formData.date = new Date(formData.date).toISOString();
+      // Convert dates to ISO strings
+      if (eventData.date) {
+        eventData.date = new Date(eventData.date).toISOString();
       }
-      if (formData.endDate) {
-        formData.endDate = new Date(formData.endDate).toISOString();
+      if (eventData.endDate) {
+        eventData.endDate = new Date(eventData.endDate).toISOString();
       }
 
-      this.eventsService.createEvent(formData).subscribe({
-        next: (createdEvent) => {
-          this.isLoading = false;
-          this.submitEvent.emit(createdEvent); // Notify parent component
-          this.dialogRef.close();
-          if (!this.event) {
-            this.eventForm.reset();
-          }
-        },
-        error: (err) => {
-          this.isLoading = false;
-          this.errorMessage = err.message || 'Failed to create event';
-          console.error('Error creating event:', err);
-        },
-      });
+      this.eventsService
+        .createEvent(eventData, this.selectedImageFile)
+        .subscribe({
+          next: (createdEvent) => {
+            this.isLoading = false;
+            this.submitEvent.emit(createdEvent);
+            this.dialogRef.close();
+            if (!this.event) {
+              this.eventForm.reset();
+            }
+          },
+          error: (err) => {
+            this.isLoading = false;
+            this.errorMessage = err.message || 'Failed to create event';
+            console.error('Error creating event:', err);
+          },
+        });
     }
   }
 }

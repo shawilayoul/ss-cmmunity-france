@@ -48,10 +48,11 @@
     <div class="form-group">
       <label for="imageUrl">Image URL*</label>
       <input
-        type="url"
-        id="imageUrl"
-        formControlName="imageUrl"
+        type="file"
+        id="image"
+        (change)="onFileSelected($event)"
         class="form-control"
+        accept="image/*"
       />
     </div>
 
@@ -135,8 +136,12 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!eventForm.valid || isLoading">
-      <span *ngIf="!isLoading">{{ event ? 'Update' : 'Create' }} Event</span>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!eventForm.valid || isLoading"
+    >
+      <span *ngIf="!isLoading">{{ event ? "Update" : "Create" }} Event</span>
       <span *ngIf="isLoading">Creating...</span>
     </button>
   </form>
