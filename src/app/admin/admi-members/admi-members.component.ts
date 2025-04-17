@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatChipListbox, MatChip } from '@angular/material/chips';
 import { Member } from '../../pages/members/members.model';
 import { RequestMembershipDialogComponent } from '../../pages/request-membership-dialog/request-membership-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -26,8 +25,6 @@ import { CommonModule } from '@angular/common';
     MatChipsModule,
     MatButtonModule,
     MatTooltipModule,
-    MatChipListbox,
-    MatChip,
     MatButtonToggleModule,
     MatCardModule,
     MatDividerModule,
@@ -48,7 +45,7 @@ export class AdmiMembersComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadMembers();
-    this.applyFilters()
+    this.applyFilters();
   }
 
   loadMembers(): void {
@@ -112,10 +109,14 @@ export class AdmiMembersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // Handle the submitted form data
-        console.log('Membership request submitted:', result);
-        // You would typically send this to your backend here
+      this.loadMembers();
       }
+    });
+  }
+
+  deletMember(id: any) {
+    return this.memberService.deletMember(id).subscribe(() => {
+      this.loadMembers();
     });
   }
 }

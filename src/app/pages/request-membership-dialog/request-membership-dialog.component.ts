@@ -73,7 +73,7 @@ export class RequestMembershipDialogComponent {
       this.memberService.createMember(payload).subscribe({
         next: (response) => {
           console.log('Member created:', response);
-          this.dialogRef.close(); // close dialog on success
+          this.dialogRef.close(); 
         },
         error: (error) => {
           console.error('Error creating member:', error);

@@ -1,5 +1,5 @@
 export interface GalleryItem {
-    id?: number;
+    id?: string;
     title: string;
     category: 'cultural' | 'events' | 'community';
     imageUrl?: string;

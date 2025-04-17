@@ -28,4 +28,8 @@ export class GalleryService {
       }
       return this.http.post<GalleryItem>(this.apiUrl, formDate);
     }
+
+    deleteGallery(id: string): Observable<void>{
+      return this.http.delete<void>(`${this.apiUrl}/${id}`)
+    }
 }

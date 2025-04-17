@@ -16,5 +16,7 @@ export class MemberService {
   createMember(member: Partial<Member>): Observable<Member> {
     return this.http.post<Member>(this.apiUrl, member);
   }
-
+  deletMember(id: string): Observable<void>{
+return this.http.delete<void>(`${this.apiUrl}/${id}`)
+  }
 }

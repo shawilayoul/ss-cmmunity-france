@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
 import { Event } from './events.model';
 import { EventsService } from '../../services/event.service';
 @Component({
   selector: 'app-events',
-  imports: [CommonModule, RouterLink, MatIconModule],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './events.component.html',
   styleUrl: './events.component.scss',
 })

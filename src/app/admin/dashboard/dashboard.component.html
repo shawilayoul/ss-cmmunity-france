@@ -51,39 +51,7 @@
           <p class="meta-info">{{ event.date | date:'mediumDate' }}</p>
           <p class="meta-info">{{ event.category }}</p>
           <div class="card-actions">
-            <button [routerLink]="['/admin/events/edit', event.id]" class="btn-edit">
-              <i class="fas fa-edit"></i> Edit
-            </button>
             <button (click)="viewEventDetails(event.id)" class="btn-view">
-              <i class="fas fa-eye"></i> View
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Recent Members Section -->
-  <div class="dashboard-section">
-    <div class="section-header">
-      <h2>Recent Members</h2>
-      <a routerLink="/admin/members" class="view-all">View All</a>
-    </div>
-    <div class="card-grid">
-      <div *ngFor="let member of recentMembers" class="card">
-        <div class="card-image">
-          <img [src]="member?.profilePhoto || './assets/images/default-profile.png'" [alt]="member.name">
-          <span *ngIf="member.isActive" class="active-badge">Active</span>
-        </div>
-        <div class="card-details">
-          <h3>{{ member.name }}</h3>
-          <p class="meta-info">{{ member.role }}</p>
-          <p class="meta-info">Joined: {{ member?.joinedDate | date:'mediumDate' }}</p>
-          <div class="card-actions">
-            <button [routerLink]="['/admin/members/edit', member.id]" class="btn-edit">
-              <i class="fas fa-edit"></i> Edit
-            </button>
-            <button (click)="viewMemberDetails(member.id)" class="btn-view">
               <i class="fas fa-eye"></i> View
             </button>
           </div>
@@ -108,11 +76,8 @@
           <p class="meta-info">{{ item.category }}</p>
           <p class="meta-info">Uploaded: {{ item.date | date:'mediumDate' }}</p>
           <div class="gallery-actions">
-            <button [routerLink]="['/admin/gallery/edit', item.id]" class="btn-edit">
-              <i class="fas fa-edit"></i> Edit
-            </button>
-            <button (click)="deleteGalleryItem(item.id)" class="btn-delete">
-              <i class="fas fa-trash"></i> Delete
+            <button (click)="viewEventDetails(item.id)" class="btn-view">
+              <i class="fas fa-eye"></i> View
             </button>
           </div>
         </div>

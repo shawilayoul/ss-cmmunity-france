@@ -99,17 +99,11 @@ export class GalleryAdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {});
   }
 
-  deleteItem(item: GalleryItem): void {
-    /*const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '400px',
-      data: {
-        title: 'Confirm Delete',
-        message: `Are you sure you want to delete "${item.title}"?`
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    
-    });*/
+  deleteItem(id: any): void {
+    if (confirm('Are you sure you want to delete this gallery?')) {
+      this.galleryService.deleteGallery(id).subscribe(() => {
+        this.loadGalleryItems();
+      });
+    }
   }
 }
