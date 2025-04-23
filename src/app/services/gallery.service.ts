@@ -8,7 +8,7 @@ import { GalleryItem } from '../pages/gallery/gallery.model';
 })
 export class GalleryService {
 
-    private apiUrl = 'http://localhost:8080/api/gallery';
+    private apiUrl = 'https://ss-cmmunity-fr.onrender.com/api/gallery';
   
     constructor(private http: HttpClient) {}
   

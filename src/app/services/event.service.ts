@@ -7,7 +7,7 @@ import { Event } from '../pages/events/events.model';
   providedIn: 'root',
 })
 export class EventsService {
-  private apiUrl = 'http://localhost:8080/api/events';
+  private apiUrl = 'https://ss-cmmunity-fr.onrender.com/api/events';
 
   constructor(private http: HttpClient) {}
 
