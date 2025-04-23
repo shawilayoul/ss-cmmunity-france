@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/admin/gallery-edit-dialog/gallery-edit-dialog.component.scss"],
-  "sourcesContent": [".header-section {\r\n  background-color: #1a5276;\r\n  color: white;\r\n  margin-bottom: 1rem;\r\n}\r\n.full-width {\r\n  width: 100%;\r\n  margin-bottom: 16px;\r\n  overflow: hidden;\r\n}\r\n\r\nmat-dialog-content {\r\n  padding: 16px 0;\r\n}\r\n\r\nmat-dialog-actions {\r\n  padding: 16px;\r\n}\r\n"],
-  "mappings": ";AAAA,CAAA;AACE,oBAAA;AACA,SAAA;AACA,iBAAA;;AAEF,CAAA;AACE,SAAA;AACA,iBAAA;AACA,YAAA;;AAGF;AACE,WAAA,KAAA;;AAGF;AACE,WAAA;;",
-  "names": []
-}
