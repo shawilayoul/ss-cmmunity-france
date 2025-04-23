@@ -1,0 +1,15 @@
+{
+  "routes": {
+    "/": {},
+    "/about": {},
+    "/admin": {},
+    "/admin/dashboard": {},
+    "/admin/eventList": {},
+    "/admin/gallery": {},
+    "/admin/members": {},
+    "/contact": {},
+    "/events": {},
+    "/gallery": {},
+    "/members": {}
+  }
+}
