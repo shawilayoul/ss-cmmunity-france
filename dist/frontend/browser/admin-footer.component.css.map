@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/admin/layouts/admin-footer/admin-footer.component.scss"],
+  "sourcesContent": [".admin-footer {\r\n    text-align: center;\r\n    padding: 1rem;\r\n    background-color: #111827; // dark gray\r\n    color: #9ca3af; // light gray text\r\n    font-size: 0.9rem;\r\n    margin-top: auto;\r\n  }\r\n  "],
+  "mappings": ";AAAA,CAAA;AACI,cAAA;AACA,WAAA;AACA,oBAAA;AACA,SAAA;AACA,aAAA;AACA,cAAA;;",
+  "names": []
+}
