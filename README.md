@@ -2,7 +2,7 @@
 
 A full-stack web application developed for the **South Sudanese Community in France**, aimed at uniting members, sharing community news, and celebrating cultural events. Designed with a focus on **usability**, **scalability**, and **community engagement**.
 
-🔗 **Live Website**: [Visit the site](https://south-sudan-community.netlify.app)
+🔗 **Live Website**: [Visit the site](https://ss-community-fr.netlify.app/)
 
 ## ✨ Features
 
