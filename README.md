@@ -1,3 +1,24 @@
+# 🇸🇸🇫🇷 South Sudanese Community in France – Web Platform
+
+A full-stack web application developed for the **South Sudanese Community in France**, aimed at uniting members, sharing community news, and celebrating cultural events. Designed with a focus on **usability**, **scalability**, and **community engagement**.
+
+🔗 **Live Website**: [Visit the site](https://south-sudan-community.netlify.app)
+
+## ✨ Features
+
+- 🗓️ View upcoming community events  
+- 👥 Browse community member profiles  
+- 🖼️ Explore curated photo galleries  
+- 📝 Join the community through a registration form  
+- 🔐 Admin dashboard to manage events, members, and galleries  
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Angular with Material UI  
+- **Backend**: Spring Boot + MongoDB  
+- **Deployment**: Dockerized backend on Render, frontend hosted on Netlify  
+
+---
 # Frontend
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
