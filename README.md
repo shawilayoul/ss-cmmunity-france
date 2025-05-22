@@ -2,17 +2,16 @@
 
 A full-stack web application developed for the **South Sudanese Community in France**, aimed at uniting members, sharing community news, and celebrating cultural events. Designed with a focus on **usability**, **scalability**, and **community engagement**.
 
-🔗 **Live Website**: [Visit the site](https://ss-community-fr.netlify.app/)
+**Live Website**: [Visit the site](https://ss-community-fr.netlify.app/)
 
-## ✨ Features
+## Features
 
-- 🗓️ View upcoming community events  
-- 👥 Browse community member profiles  
-- 🖼️ Explore curated photo galleries  
-- 📝 Join the community through a registration form  
-- 🔐 Admin dashboard to manage events, members, and galleries  
+- View upcoming community events  
+- Explore curated photo galleries  
+- Join the community through a registration form  
+- Admin dashboard to manage events, members, and galleries  
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: Angular with Material UI  
 - **Backend**: Spring Boot + MongoDB  
